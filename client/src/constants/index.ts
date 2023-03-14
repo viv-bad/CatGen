@@ -1,27 +1,27 @@
 export const propertyReferralsInfo = [
   {
-    title: 'Social Media',
+    title: "Characterisation",
     percentage: 64,
-    color: '#6C5DD3',
+    color: "#6C5DD3",
   },
   {
-    title: 'Marketplace',
+    title: "Electrochemistry",
     percentage: 40,
-    color: '#7FBA7A',
+    color: "#7FBA7A",
   },
   {
-    title: 'Websites',
+    title: "Electrolyzer testing",
     percentage: 50,
-    color: '#FFCE73',
+    color: "#FFCE73",
   },
   {
-    title: 'Digital Ads',
+    title: "Full-cell testing",
     percentage: 80,
-    color: '#FFA2C0',
+    color: "#FFA2C0",
   },
   {
-    title: 'Others',
+    title: "Exploratory",
     percentage: 15,
-    color: '#F45252',
+    color: "#F45252",
   },
 ];

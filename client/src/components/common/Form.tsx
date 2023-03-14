@@ -40,28 +40,53 @@ const Form = ({
           }}
           onSubmit={handleSubmit(onFinishHandler)}
         >
-          <FormControl>
-            <FormHelperText
-              sx={{
-                fontWeight: 500,
-                margin: "10px 0px",
-                fontSize: 16,
-                color: "#11142d",
-              }}
-            >
-              Enter Property Name
-            </FormHelperText>
-            <TextField
-              fullWidth
-              required
-              id="outlined-basic"
-              color="info"
-              variant="outlined"
-              {...register("title", {
-                required: true,
-              })}
-            />
-          </FormControl>
+          <Stack direction="row" gap={4}>
+            <FormControl sx={{ flex: 1 }}>
+              <FormHelperText
+                sx={{
+                  fontWeight: 500,
+                  margin: "10px 0px",
+                  fontSize: 16,
+                  color: "#11142d",
+                }}
+              >
+                Experiment Title
+              </FormHelperText>
+              <TextField
+                width="75%"
+                required
+                id="outlined-basic"
+                color="info"
+                variant="outlined"
+                {...register("title", {
+                  required: true,
+                })}
+              />
+            </FormControl>
+
+            <FormControl sx={{ flex: 1 }}>
+              <FormHelperText
+                sx={{
+                  fontWeight: 500,
+                  margin: "10px 0px",
+                  fontSize: 16,
+                  color: "#11142d",
+                }}
+              >
+                Experiment Code
+              </FormHelperText>
+              <TextField
+                width="25%"
+                required
+                id="outlined-basic"
+                color="info"
+                variant="outlined"
+                {...register("title", {
+                  required: true,
+                })}
+              />
+            </FormControl>
+          </Stack>
 
           <FormControl>
             <FormHelperText
@@ -72,7 +97,7 @@ const Form = ({
                 color: "#11142d",
               }}
             >
-              Enter Description
+              Experimental Details
             </FormHelperText>
             <TextareaAutosize
               minRows={5}
@@ -104,7 +129,7 @@ const Form = ({
                   color: "#11142d",
                 }}
               >
-                Select Property Type
+                Select Experiment Type
               </FormHelperText>
               <Select
                 variant="outlined"
@@ -115,14 +140,13 @@ const Form = ({
                 defaultValue="apartment"
                 {...register("propertyType", { required: true })}
               >
-                <MenuItem value="apartment">Apartment</MenuItem>
-                <MenuItem value="villa">Villa</MenuItem>
-                <MenuItem value="farmhouse">Farmhouse</MenuItem>
-                <MenuItem value="condos">Condos</MenuItem>
-                <MenuItem value="townhouse">Townhouse</MenuItem>
-                <MenuItem value="duplex">Duplex</MenuItem>
-                <MenuItem value="studio">Studio</MenuItem>
-                <MenuItem value="chalet">Chalet</MenuItem>
+                <MenuItem value="apartment">Characterisation</MenuItem>
+                <MenuItem value="villa">Electrochemistry</MenuItem>
+                <MenuItem value="farmhouse">Exploratory</MenuItem>
+                <MenuItem value="condos">Fuel Cell</MenuItem>
+                <MenuItem value="townhouse">Battery</MenuItem>
+                <MenuItem value="duplex">Voltammetry</MenuItem>
+                <MenuItem value="studio">Impedance</MenuItem>
               </Select>
             </FormControl>
 
@@ -135,7 +159,7 @@ const Form = ({
                   color: "#11142d",
                 }}
               >
-                Enter Property Price
+                Date of Experiment
               </FormHelperText>
               <TextField
                 fullWidth
@@ -182,7 +206,7 @@ const Form = ({
                 fontWeight={500}
                 my="10px"
               >
-                Property Photo
+                Upload Plot
               </Typography>
               <Button
                 component="label"

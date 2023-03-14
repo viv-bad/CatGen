@@ -14,6 +14,7 @@ import {
   AccountCircleOutlined,
   ChatBubbleOutline,
   PeopleAltOutlined,
+  ScienceOutlined,
   StarOutlineRounded,
   VillaOutlined,
 } from "@mui/icons-material";
@@ -60,15 +61,18 @@ function App() {
       // Save user to MongoDB here...
 
       if (profileObj) {
-        const response = await fetch("https://property-dashboard-ioic.onrender.com/api/v1/users", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: profileObj.name,
-            email: profileObj.email,
-            avatar: profileObj.picture,
-          }),
-        });
+        const response = await fetch(
+          "https://property-dashboard-ioic.onrender.com/api/v1/users",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: profileObj.name,
+              email: profileObj.email,
+              avatar: profileObj.picture,
+            }),
+          }
+        );
 
         const data = await response.json();
 
@@ -129,18 +133,20 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider("https://property-dashboard-ioic.onrender.com/api/v1")}
+          dataProvider={dataProvider(
+            "https://property-dashboard-ioic.onrender.com/api/v1"
+          )}
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "properties",
+              name: "properties", //change to experiments
               list: AllProperties,
               show: PropertyDetails,
               create: CreateProperty,
               edit: EditProperty,
-              icon: <VillaOutlined />,
+              icon: <ScienceOutlined />,
             },
             {
               name: "agents",
@@ -148,11 +154,11 @@ function App() {
               show: AgentProfile,
               icon: <PeopleAltOutlined />,
             },
-            {
-              name: "reviews",
-              list: Home,
-              icon: <StarOutlineRounded />,
-            },
+            // {
+            //   name: "reviews",
+            //   list: Home,
+            //   icon: <StarOutlineRounded />,
+            // },
             {
               name: "messages",
               list: Home,

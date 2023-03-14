@@ -11,7 +11,7 @@ import {
 
 const Home = () => {
   const { data, isLoading, isError } = useList({
-    resource: "properties",
+    resource: "properties", //change to experiments
     config: {
       pagination: {
         pageSize: 4,
@@ -31,31 +31,31 @@ const Home = () => {
       </Typography>
       <Box mt="20px" display="flex" flexWrap="wrap" gap={4}>
         <PieChart
-          title="Properties for Sale"
+          title="Experiments completed this month"
           value={684}
           series={[75, 25]}
-          colors={["#275be8", "#c4e8ef"]}
+          colors={["#8C00FF", "#0081FF"]}
         />
 
         <PieChart
-          title="Properties for Rent"
+          title="Experiments to do this month"
           value={550}
           series={[60, 40]}
-          colors={["#275be8", "#c4e8ef"]}
+          colors={["#8C00FF", "#0081FF"]}
         />
 
         <PieChart
-          title="Total Customers"
+          title="Total Experiments Completed"
           value={4322}
           series={[10, 25]}
-          colors={["#275be8", "#c4e8ef"]}
+          colors={["#8C00FF", "#0081FF"]}
         />
 
         <PieChart
-          title="Properties for Cities"
+          title="Annual Target of Experiments"
           value={555}
           series={[75, 25]}
-          colors={["#275be8", "#c4e8ef"]}
+          colors={["#8C00FF", "#0081FF"]}
         />
       </Box>
 
@@ -80,7 +80,7 @@ const Home = () => {
         mt="25px"
       >
         <Typography fontSize="18px" fontWeight={600} color="#11142d">
-          Latest Properties
+          Recent Experiments
         </Typography>
 
         <Box mt={2.5} sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
