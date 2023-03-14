@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useLogin } from "@pankod/refine-core";
 import { Container, Box } from "@pankod/refine-mui";
 
-import { yariga } from "../assets";
+import { catgen, yariga } from "../assets";
 
 import { CredentialResponse } from "../interfaces/google";
 

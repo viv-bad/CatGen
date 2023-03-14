@@ -16,11 +16,11 @@ import TopAgent from "./home/TopAgent";
 
 export {
   Profile,
-  PropertyCard,
+  PropertyCard, //ExperimentCard
   CustomButton,
   PieChart,
-  PropertyReferrals,
-  TotalRevenue,
-  AgentCard,
-  TopAgent,
+  PropertyReferrals, //ExperimentReferrals
+  TotalRevenue, // Total Successful Experiments
+  AgentCard, // ResearcherCard
+  TopAgent, //TopResearcher
 };

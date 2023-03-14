@@ -4,7 +4,7 @@ import { Box, Typography } from "@pankod/refine-mui";
 
 import { AgentCard } from "components";
 
-const Agents = () => {
+const Researchers = () => {
   const { data, isLoading, isError } = useList({
     resource: "users",
   });
@@ -44,4 +44,4 @@ const Agents = () => {
   );
 };
 
-export default Agents;
+export default Researchers;

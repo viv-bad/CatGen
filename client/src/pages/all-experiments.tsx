@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "@pankod/refine-react-router-v6";
 import { PropertyCard, CustomButton } from "components";
 
-const AllProperties = () => {
+const AllExperiments = () => {
   const navigate = useNavigate();
   const {
     tableQueryResult: { data, isLoading, isError },
@@ -227,4 +227,4 @@ const AllProperties = () => {
   );
 };
 
-export default AllProperties;
+export default AllExperiments;

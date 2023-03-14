@@ -28,13 +28,13 @@ import { Title, Sider, Layout, Header } from "components/layout";
 import {
   Login,
   Home,
-  Agents,
+  Researchers,
   MyProfile,
-  PropertyDetails,
-  AllProperties,
-  CreateProperty,
-  AgentProfile,
-  EditProperty,
+  ExperimentDetails,
+  AllExperiments,
+  CreateExperiment,
+  ResearcherProfile,
+  EditExperiment,
 } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
@@ -134,24 +134,24 @@ function App() {
       <RefineSnackbarProvider>
         <Refine
           dataProvider={dataProvider(
-            "https://property-dashboard-ioic.onrender.com/api/v1"
+            "https://property-dashboard-ioic.onrender.com/api/v1" //'https://api.fake-rest.refine.dev'
           )}
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "properties", //change to experiments
-              list: AllProperties,
-              show: PropertyDetails,
-              create: CreateProperty,
-              edit: EditProperty,
+              name: "experiments", //change to experiments
+              list: AllExperiments,
+              show: ExperimentDetails,
+              create: CreateExperiment,
+              edit: EditExperiment,
               icon: <ScienceOutlined />,
             },
             {
-              name: "agents",
-              list: Agents,
-              show: AgentProfile,
+              name: "researcher",
+              list: Researchers,
+              show: ResearcherProfile,
               icon: <PeopleAltOutlined />,
             },
             // {

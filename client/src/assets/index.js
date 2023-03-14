@@ -1,4 +1,4 @@
-import logo from "./logo_catgen.svg";
-import yariga from "./catgen.svg";
-
-export { logo, yariga };
+import logo from "./logo.svg";
+import catgen from "./catgen.svg";
+import yariga from "./yariga.svg";
+export { logo, catgen, yariga };

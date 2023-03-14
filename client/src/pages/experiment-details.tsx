@@ -18,7 +18,7 @@ function checkImage(url: any) {
   return img.width !== 0 && img.height !== 0;
 }
 
-const PropertyDetails = () => {
+const ExperimentDetails = () => {
   const navigate = useNavigate();
   const { data: user } = useGetIdentity({
     // v3LegacyAuthProviderCompatible: true,
@@ -280,4 +280,4 @@ const PropertyDetails = () => {
   );
 };
 
-export default PropertyDetails;
+export default ExperimentDetails;

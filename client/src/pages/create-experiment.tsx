@@ -6,7 +6,7 @@ import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
 import { useNavigate } from "@pankod/refine-react-router-v6";
 import Form from "components/common/Form";
 
-const CreateProperty = () => {
+const CreateExperiment = () => {
   const navigate = useNavigate();
   const { data: user } = useGetIdentity();
   const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
@@ -50,4 +50,4 @@ const CreateProperty = () => {
   );
 };
 
-export default CreateProperty;
+export default CreateExperiment;
