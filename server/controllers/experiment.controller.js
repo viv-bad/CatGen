@@ -1,4 +1,4 @@
-import Property from "../mongodb/models/property.js";
+import Experiment from "../mongodb/models/experiment.js";
 import User from "../mongodb/models/user.js";
 import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const getAllProperties = async (req, res) => {
+const getAllExperiments = async (req, res) => {
   // fetach all properties based on pagination/filtering etc...
   const {
     _end,
@@ -19,21 +19,21 @@ const getAllProperties = async (req, res) => {
     _start,
     _sort,
     title_like = "",
-    propertyType = "",
+    experimentType = "",
   } = req.query;
 
   const query = {};
 
-  if (propertyType !== "") {
-    query.propertyType = propertyType;
+  if (experimentType !== "") {
+    query.experimentType = experimentType;
   }
   if (title_like) {
     query.title = { $regex: title_like, $options: "i" }; //case insentitive 'i'
   }
   try {
-    const count = await Property.countDocuments({ query });
+    const count = await Experiment.countDocuments({ query });
 
-    const properties = await Property.find(query)
+    const experiments = await Experiment.find(query)
       .limit(_end)
       .skip(_start)
       .sort({ [_sort]: _order });
@@ -41,28 +41,36 @@ const getAllProperties = async (req, res) => {
     res.header("x-total-count", count);
     res.header("Access-Control-Expose-Headers", "x-total-count");
 
-    res.status(200).json(properties);
+    res.status(200).json(experiments);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
-const getPropertyDetail = async (req, res) => {
+const getExperimentDetail = async (req, res) => {
   const { id } = req.params;
-  const propertyExists = await Property.findOne({ _id: id }).populate(
+  const experimentExists = await Experiment.findOne({ _id: id }).populate(
     "creator"
   );
 
-  if (propertyExists) {
-    res.status(200).json(propertyExists);
+  if (experimentExists) {
+    res.status(200).json(experimentExists);
   } else {
-    res.status(404).json({ message: "Property not found" });
+    res.status(404).json({ message: "Experiment not found" });
   }
 };
 
-const createProperty = async (req, res) => {
+const createExperiment = async (req, res) => {
   try {
-    const { title, description, propertyType, location, price, photo, email } =
-      req.body;
+    const {
+      title,
+      code,
+      description,
+      experimentType,
+      location,
+      date,
+      photo,
+      email,
+    } = req.body;
 
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -73,80 +81,82 @@ const createProperty = async (req, res) => {
 
     const photoUrl = await cloudinary.uploader.upload(photo);
 
-    const newProperty = await Property.create({
+    const newExperiment = await Experiment.create({
       title,
+      code,
       description,
-      propertyType,
+      experimentType,
       location,
-      price,
+      date,
       photo: photoUrl.url,
       creator: user._id,
     });
 
-    user.allProperties.push(newProperty._id);
+    user.allExperiments.push(newExperiment._id);
     await user.save({ session });
 
     await session.commitTransaction();
 
-    res.status(200).json({ message: "Property created successfully" });
+    res.status(200).json({ message: "Experiment created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const updateProperty = async (req, res) => {
+const updateExperiment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, propertyType, location, price, photo } =
+    const { title, code, description, experimentType, location, date, photo } =
       req.body;
 
     const photoUrl = await cloudinary.uploader.upload(photo);
 
-    await Property.findByIdAndUpdate(
+    await Experiment.findByIdAndUpdate(
       { _id: id },
       {
         title,
+        code,
         description,
-        propertyType,
+        experimentType,
         location,
-        price,
+        date,
         photo: photoUrl.url || photo,
       }
     );
 
-    res.status(200).json({ message: "Property updated successfully" });
+    res.status(200).json({ message: "Experiment updated successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-const deleteProperty = async (req, res) => {
+const deleteExperiment = async (req, res) => {
   try {
     const { id } = req.params;
-    const propertyToDelete = await Property.findById({ _id: id }).populate(
+    const experimentToDelete = await Experiment.findById({ _id: id }).populate(
       "creator"
     );
 
-    if (!propertyToDelete) throw new Error("Property not found");
+    if (!experimentToDelete) throw new Error("Experiment not found");
 
     const session = await mongoose.startSession();
     session.startTransaction();
-    propertyToDelete.deleteOne({ session });
-    propertyToDelete.creator.allProperties.pull(propertyToDelete);
+    experimentToDelete.deleteOne({ session });
+    experimentToDelete.creator.allExperiments.pull(experimentToDelete);
 
-    await propertyToDelete.creator.save({ session });
+    await experimentToDelete.creator.save({ session });
 
     await session.commitTransaction();
-    res.status(200).json({ message: "Property deleted successfully" });
+    res.status(200).json({ message: "Experiment deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
 export {
-  getAllProperties,
-  createProperty,
-  getPropertyDetail,
-  updateProperty,
-  deleteProperty,
+  getAllExperiments,
+  createExperiment,
+  getExperimentDetail,
+  updateExperiment,
+  deleteExperiment,
 };

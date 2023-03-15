@@ -11,7 +11,7 @@ import {
 
 const Home = () => {
   const { data, isLoading, isError } = useList({
-    resource: "properties", //change to experiments
+    resource: "experiments", //change to experiments
     config: {
       pagination: {
         pageSize: 4,
@@ -19,7 +19,7 @@ const Home = () => {
     },
   });
 
-  const latestProperties = data?.data ?? [];
+  const latestExperiments = data?.data ?? [];
 
   if (isLoading) return <Typography>Loading...</Typography>;
   if (isError) return <Typography>Something went wrong...</Typography>;
@@ -84,15 +84,15 @@ const Home = () => {
         </Typography>
 
         <Box mt={2.5} sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-          {latestProperties.map((property) => (
+          {latestExperiments.map((experiment) => (
             <ExperimentCard
-              key={property._id}
-              id={property._id}
-              title={property.title}
-              code={property.code}
-              location={property.location}
-              date={property.date}
-              photo={property.photo}
+              key={experiment._id}
+              id={experiment._id}
+              title={experiment.title}
+              code={experiment.code}
+              location={experiment.location}
+              date={experiment.date}
+              photo={experiment.photo}
             />
           ))}
         </Box>

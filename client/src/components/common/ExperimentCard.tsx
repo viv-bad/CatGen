@@ -70,7 +70,7 @@ const ExperimentCard = ({
           height="fit-content"
         >
           <Typography fontSize={12} fontWeight={600} color="#475be8">
-            {/* {date} */}
+            {date?.toString() ?? ""}
             {/* convert date to string */}
             DATE HERE
           </Typography>

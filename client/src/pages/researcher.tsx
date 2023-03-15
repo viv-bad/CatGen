@@ -35,7 +35,7 @@ const Researchers = () => {
               name={agent.name}
               email={agent.email}
               avatar={agent.avatar}
-              noOfExperiments={agent.allProperties.length}
+              noOfExperiments={agent.allExperiments.length}
             />
           ))}
         </Box>

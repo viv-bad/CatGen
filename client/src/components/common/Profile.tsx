@@ -146,15 +146,15 @@ const Profile = ({ type, name, avatar, email, experiments }: ProfileProps) => (
             gap: 2.5,
           }}
         >
-          {experiments?.map((property: ExperimentProps) => (
+          {experiments?.map((experiment: ExperimentProps) => (
             <PropertyCard
-              key={property._id}
-              id={property._id}
-              title={property.title}
-              code={property.code}
-              location={property.location}
-              date={property.date}
-              photo={property.photo}
+              key={experiment._id}
+              id={experiment._id}
+              title={experiment.title}
+              code={experiment.code}
+              location={experiment.location}
+              date={experiment.date}
+              photo={experiment.photo}
             />
           ))}
         </Box>

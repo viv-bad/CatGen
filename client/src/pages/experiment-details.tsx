@@ -43,17 +43,17 @@ const ExperimentDetails = () => {
 
   const handleDeleteProperty = () => {
     const response = window.confirm(
-      `Are you sure you want to delete this property?`
+      `Are you sure you want to delete this experiment?`
     );
     if (response) {
       mutate(
         {
-          resource: "properties",
+          resource: "experiments",
           id: id as string,
         },
         {
           onSuccess: () => {
-            navigate("/properties");
+            navigate("/experiments");
           },
         }
       );
@@ -222,7 +222,7 @@ const ExperimentDetails = () => {
                   fontWeight={600}
                   color="#11142D"
                 >
-                  {experimentDetails.creator.allProperties.length} Properties
+                  {experimentDetails.creator.allExperiments.length} Experiments
                 </Typography>
               </Stack>
               <Stack
@@ -240,7 +240,7 @@ const ExperimentDetails = () => {
                   icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                   handleClick={() => {
                     if (isCurrentUser) {
-                      navigate(`/properties/edit/${experimentDetails._id}`);
+                      navigate(`/experiments/edit/${experimentDetails._id}`);
                     }
                   }}
                 />
