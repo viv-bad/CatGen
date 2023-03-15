@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import { FormValues } from "interfaces/property";
+import { FormValues } from "interfaces/experiment";
 
 export const validateForm = (formValues: FormValues) => {
   const errors: { message: string } = { message: "" };
@@ -14,6 +14,13 @@ export const validateForm = (formValues: FormValues) => {
         }
         break;
 
+      case "code":
+        if (!formValues.code) {
+          errors.message = "Experiment code is required";
+          hasError = true;
+        }
+        break;
+
       case "description":
         if (!formValues.description) {
           errors.message = "Description is required";
@@ -21,8 +28,8 @@ export const validateForm = (formValues: FormValues) => {
         }
         break;
 
-      case "propertyType":
-        if (!formValues.propertyType) {
+      case "experimentType":
+        if (!formValues.experimentType) {
           errors.message = "Property type is required";
           hasError = true;
         }
@@ -35,8 +42,8 @@ export const validateForm = (formValues: FormValues) => {
         }
         break;
 
-      case "price":
-        if (!formValues.price) {
+      case "date":
+        if (!formValues.date) {
           errors.message = "Price is required";
           hasError = true;
         }

@@ -9,7 +9,7 @@ import Form from "components/common/Form";
 const CreateExperiment = () => {
   const navigate = useNavigate();
   const { data: user } = useGetIdentity();
-  const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
+  const [experimentImage, setExperimentImage] = useState({ name: "", url: "" });
 
   const {
     refineCore: { onFinish, formLoading },
@@ -26,14 +26,14 @@ const CreateExperiment = () => {
       });
 
     reader(file).then((result: string) =>
-      setPropertyImage({ name: file?.name, url: result })
+      setExperimentImage({ name: file?.name, url: result })
     );
   };
 
   const onFinishHandler = async (data: FieldValues) => {
-    if (!propertyImage.name) return alert("Please select an image");
+    if (!experimentImage.name) return alert("Please select an image");
 
-    await onFinish({ ...data, photo: propertyImage.url, email: user.email });
+    await onFinish({ ...data, photo: experimentImage.url, email: user.email });
   };
 
   return (
@@ -45,7 +45,7 @@ const CreateExperiment = () => {
       handleSubmit={handleSubmit}
       handleImageChange={handleImageChange}
       onFinishHandler={onFinishHandler}
-      propertyImage={propertyImage}
+      experimentImage={experimentImage}
     />
   );
 };

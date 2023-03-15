@@ -1,4 +1,4 @@
-export const propertyReferralsInfo = [
+export const experimentReferralsInfo = [
   {
     title: "Characterisation",
     percentage: 64,

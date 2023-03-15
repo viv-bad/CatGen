@@ -5,7 +5,7 @@ import Form from "components/common/Form";
 
 const EditExperiment = () => {
   const { data: user } = useGetIdentity();
-  const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
+  const [experimentImage, setExperimentImage] = useState({ name: "", url: "" });
   const {
     refineCore: { onFinish, formLoading },
     register,
@@ -21,14 +21,14 @@ const EditExperiment = () => {
       });
 
     reader(file).then((result: string) =>
-      setPropertyImage({ name: file?.name, url: result })
+      setExperimentImage({ name: file?.name, url: result })
     );
   };
 
   const onFinishHandler = async (data: FieldValues) => {
-    if (!propertyImage.name) return alert("Please upload a property image");
+    if (!experimentImage.name) return alert("Please upload a property image");
 
-    await onFinish({ ...data, photo: propertyImage.url, email: user.email });
+    await onFinish({ ...data, photo: experimentImage.url, email: user.email });
   };
 
   return (
@@ -40,7 +40,7 @@ const EditExperiment = () => {
       handleSubmit={handleSubmit}
       handleImageChange={handleImageChange}
       onFinishHandler={onFinishHandler}
-      propertyImage={propertyImage}
+      experimentImage={experimentImage}
     />
   );
 };

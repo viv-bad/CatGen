@@ -29,7 +29,7 @@ const ExperimentDetails = () => {
 
   const { data, isLoading, isError } = queryResult;
 
-  const propertyDetails = data?.data ?? {};
+  const experimentDetails = data?.data ?? {};
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -39,7 +39,7 @@ const ExperimentDetails = () => {
     return <div>Something went wrong!</div>;
   }
 
-  const isCurrentUser = user.email === propertyDetails.creator.email;
+  const isCurrentUser = user.email === experimentDetails.creator.email;
 
   const handleDeleteProperty = () => {
     const response = window.confirm(
@@ -78,8 +78,8 @@ const ExperimentDetails = () => {
         >
           <Box flex={1} maxWidth={764}>
             <img
-              src={propertyDetails.photo}
-              alt={propertyDetails.title}
+              src={experimentDetails.photo}
+              alt={experimentDetails.title}
               height={546}
               style={{
                 objectFit: "cover",
@@ -101,7 +101,7 @@ const ExperimentDetails = () => {
                   color="#11142d"
                   textTransform="capitalize"
                 >
-                  {propertyDetails.propertyType}
+                  {experimentDetails.experimentType}
                 </Typography>
                 <Box>
                   {[1, 2, 3, 4, 5].map((star) => (
@@ -123,13 +123,13 @@ const ExperimentDetails = () => {
                     color="#11142d"
                     textTransform="capitalize"
                   >
-                    {propertyDetails.title}
+                    {experimentDetails.title}
                   </Typography>
 
                   <Stack mt={0.5} direction="row" alignItems="center">
                     <Place sx={{ color: "#808191" }} />
                     <Typography fontSize={14} color="#808191">
-                      {propertyDetails.location}
+                      {experimentDetails.location}
                     </Typography>
                   </Stack>
                 </Box>
@@ -146,7 +146,7 @@ const ExperimentDetails = () => {
                   </Typography>
                   <Stack direction="row" alignItems="flex-end" gap={1}>
                     <Typography fontSize={25} fontWeight={700} gap="#475BE8">
-                      ${propertyDetails.price}
+                      ${experimentDetails.price}
                     </Typography>
                     <Typography fontSize={14} color="#808191" mb={0.5}>
                       /day
@@ -159,7 +159,7 @@ const ExperimentDetails = () => {
                   Description
                 </Typography>
                 <Typography fontSize={14} color="#808191">
-                  {propertyDetails.description}
+                  {experimentDetails.description}
                 </Typography>
               </Stack>
             </Box>
@@ -189,8 +189,8 @@ const ExperimentDetails = () => {
               >
                 <img
                   src={
-                    checkImage(propertyDetails.creator.avatar)
-                      ? propertyDetails.creator.avatar
+                    checkImage(experimentDetails.creator.avatar)
+                      ? experimentDetails.creator.avatar
                       : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
                   }
                   alt="avatar"
@@ -204,7 +204,7 @@ const ExperimentDetails = () => {
 
                 <Box mt="15px">
                   <Typography fontSize={18} fontWeight={600} color="#11142D">
-                    {propertyDetails.creator.name}
+                    {experimentDetails.creator.name}
                   </Typography>
                   <Typography mt="5px" fontSize={14} fontWeight={400}>
                     Agent
@@ -222,7 +222,7 @@ const ExperimentDetails = () => {
                   fontWeight={600}
                   color="#11142D"
                 >
-                  {propertyDetails.creator.allProperties.length} Properties
+                  {experimentDetails.creator.allProperties.length} Properties
                 </Typography>
               </Stack>
               <Stack
@@ -240,7 +240,7 @@ const ExperimentDetails = () => {
                   icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                   handleClick={() => {
                     if (isCurrentUser) {
-                      navigate(`/properties/edit/${propertyDetails._id}`);
+                      navigate(`/properties/edit/${experimentDetails._id}`);
                     }
                   }}
                 />

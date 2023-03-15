@@ -22,12 +22,12 @@ const Form = ({
   handleImageChange,
   formLoading,
   onFinishHandler,
-  propertyImage,
+  experimentImage,
 }: FormProps) => {
   return (
     <Box>
       <Typography fontSize={25} fontWeight={700} color="#11142d">
-        {type} a property
+        {type} a experiment
       </Typography>
       <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
         <form
@@ -81,7 +81,7 @@ const Form = ({
                 id="outlined-basic"
                 color="info"
                 variant="outlined"
-                {...register("title", {
+                {...register("code", {
                   required: true,
                 })}
               />
@@ -137,16 +137,17 @@ const Form = ({
                 displayEmpty
                 required
                 inputProps={{ "aria-label": "Without label" }}
-                defaultValue="apartment"
-                {...register("propertyType", { required: true })}
+                defaultValue="General"
+                {...register("experimentType", { required: true })}
               >
-                <MenuItem value="apartment">Characterisation</MenuItem>
-                <MenuItem value="villa">Electrochemistry</MenuItem>
-                <MenuItem value="farmhouse">Exploratory</MenuItem>
-                <MenuItem value="condos">Fuel Cell</MenuItem>
-                <MenuItem value="townhouse">Battery</MenuItem>
-                <MenuItem value="duplex">Voltammetry</MenuItem>
-                <MenuItem value="studio">Impedance</MenuItem>
+                <MenuItem value="characterisation">Characterisation</MenuItem>
+                <MenuItem value="electrochemistry">Electrochemistry</MenuItem>
+                <MenuItem value="exploratory">Exploratory</MenuItem>
+                <MenuItem value="fuelcell">Fuel Cell</MenuItem>
+                <MenuItem value="battery">Battery</MenuItem>
+                <MenuItem value="voltammetry">Voltammetry</MenuItem>
+                <MenuItem value="impedance">Impedance</MenuItem>
+                <MenuItem value="general">General</MenuItem>
               </Select>
             </FormControl>
 
@@ -166,9 +167,9 @@ const Form = ({
                 required
                 id="outlined-basic"
                 color="info"
-                type="number"
+                type="date"
                 variant="outlined"
-                {...register("price", {
+                {...register("date", {
                   required: true,
                 })}
               />
@@ -234,7 +235,7 @@ const Form = ({
               color="#808191"
               sx={{ wordBreak: "break-all" }}
             >
-              {propertyImage?.name}
+              {experimentImage?.name}
             </Typography>
           </Stack>
 

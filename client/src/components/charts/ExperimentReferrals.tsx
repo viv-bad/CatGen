@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Stack, Typography } from "@pankod/refine-mui";
-import { propertyReferralsInfo } from "constants/index";
+import { experimentReferralsInfo } from "constants/index";
 
 interface ProgressBarProps {
   title: string;
@@ -36,7 +36,7 @@ const ProgressBar = ({ title, percentage, color }: ProgressBarProps) => (
   </Box>
 );
 
-const PropertyReferrals = () => {
+const ExperimentReferrals = () => {
   return (
     <Box
       p={4}
@@ -52,7 +52,7 @@ const PropertyReferrals = () => {
       </Typography>
 
       <Stack my="20px" direction="column" gap={4}>
-        {propertyReferralsInfo.map((bar) => (
+        {experimentReferralsInfo.map((bar) => (
           <ProgressBar key={bar.title} {...bar} />
         ))}
       </Stack>
@@ -60,4 +60,4 @@ const PropertyReferrals = () => {
   );
 };
 
-export default PropertyReferrals;
+export default ExperimentReferrals;

@@ -1,5 +1,5 @@
 import React from "react";
-import { AgentCardProp, InfoBarProps } from "interfaces/agent";
+import { ResearcherCardProp, InfoBarProps } from "interfaces/researcher";
 import { EmailOutlined, LocationCity, Phone, Place } from "@mui/icons-material";
 import { useGetIdentity } from "@pankod/refine-core";
 import { Box, Stack, Typography } from "@pankod/refine-mui";
@@ -14,19 +14,19 @@ const InfoBar = ({ icon, name }: InfoBarProps) => (
   </Stack>
 );
 
-const AgentCard = ({
+const ResearcherCard = ({
   id,
   email,
   name,
   avatar,
-  noOfProperties,
-}: AgentCardProp) => {
+  noOfExperiments,
+}: ResearcherCardProp) => {
   const { data: currentUser } = useGetIdentity();
 
   const generateLink = () => {
     if (currentUser.email === email) return "/my-profile";
 
-    return `/agents/show/${id}`;
+    return `/researchers/show/${id}`;
   };
 
   return (
@@ -63,7 +63,7 @@ const AgentCard = ({
               {name}
             </Typography>
             <Typography fontSize={14} color="#808191">
-              Real-Estate Agent
+              Research Associate
             </Typography>
           </Stack>
           <Stack
@@ -89,7 +89,7 @@ const AgentCard = ({
 
           <InfoBar
             icon={<LocationCity sx={{ color: "#808191" }} />}
-            name={`${noOfProperties} Properties`}
+            name={`${noOfExperiments} Experiments`}
           />
         </Stack>
       </Box>
@@ -97,4 +97,4 @@ const AgentCard = ({
   );
 };
 
-export default AgentCard;
+export default ResearcherCard;

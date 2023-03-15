@@ -8,19 +8,19 @@ import {
   CardContent,
   Stack,
 } from "@pankod/refine-mui";
-import { PropertyCardProps } from "interfaces/property";
+import { ExperimentCardProps } from "interfaces/experiment";
 
-const PropertyCard = ({
+const ExperimentCard = ({
   id,
   title,
-  price,
+  date,
   location,
   photo,
-}: PropertyCardProps) => {
+}: ExperimentCardProps) => {
   return (
     <Card
       component={Link}
-      to={`/properties/show/${id}`}
+      to={`/experiments/show/${id}`}
       sx={{
         maxWidth: "330px",
         padding: "10px",
@@ -70,7 +70,9 @@ const PropertyCard = ({
           height="fit-content"
         >
           <Typography fontSize={12} fontWeight={600} color="#475be8">
-            ${price}
+            {/* {date} */}
+            {/* convert date to string */}
+            DATE HERE
           </Typography>
         </Box>
       </CardContent>
@@ -78,4 +80,4 @@ const PropertyCard = ({
   );
 };
 
-export default PropertyCard;
+export default ExperimentCard;

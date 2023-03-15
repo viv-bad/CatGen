@@ -2,7 +2,7 @@ import React from "react";
 import { useList } from "@pankod/refine-core"; //quickly fetch list of useers
 import { Box, Typography } from "@pankod/refine-mui";
 
-import { AgentCard } from "components";
+import { ResearcherCard } from "components";
 
 const Researchers = () => {
   const { data, isLoading, isError } = useList({
@@ -29,13 +29,13 @@ const Researchers = () => {
           }}
         >
           {allAgents.map((agent) => (
-            <AgentCard
+            <ResearcherCard
               key={agent._id}
               id={agent._id}
               name={agent.name}
               email={agent.email}
               avatar={agent.avatar}
-              noOfProperties={agent.allProperties.length}
+              noOfExperiments={agent.allProperties.length}
             />
           ))}
         </Box>

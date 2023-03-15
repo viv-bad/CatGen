@@ -10,7 +10,7 @@ import {
   MenuItem,
 } from "@pankod/refine-mui";
 import { useNavigate } from "@pankod/refine-react-router-v6";
-import { PropertyCard, CustomButton } from "components";
+import { ExperimentCard, CustomButton } from "components";
 
 const AllExperiments = () => {
   const navigate = useNavigate();
@@ -28,12 +28,12 @@ const AllExperiments = () => {
 
   console.log(data);
 
-  const allProperties = data?.data ?? [];
+  const allExperiments = data?.data ?? [];
 
-  const currentPrice = sorter.find((item) => item.field === "price")?.order;
+  const currentDate = sorter.find((item) => item.field === "date")?.order;
 
   const toggleSort = (field: string) => {
-    setSorter([{ field, order: currentPrice === "asc" ? "desc" : "asc" }]);
+    setSorter([{ field, order: currentDate === "asc" ? "desc" : "asc" }]);
   };
 
   const currentFilterValues = useMemo(() => {
@@ -43,13 +43,13 @@ const AllExperiments = () => {
 
     return {
       title: logicalFilters.find((item) => item.field === "title")?.value || "",
-      propertyType:
-        logicalFilters.find((item) => item.field === "propertyType")?.value ||
+      experimentType:
+        logicalFilters.find((item) => item.field === "experimentType")?.value ||
         "",
     };
   }, [filters]);
 
-  if (isLoading) return <Typography>Loading...</Typography>;
+  if (isLoading) return <Typography>Loading experiments...</Typography>;
   if (isError) return <Typography>Error...</Typography>;
 
   return (
@@ -64,9 +64,9 @@ const AllExperiments = () => {
       >
         <Stack direction="column" width="100%">
           <Typography fontSize={25} fontWeight={700} color="#11142d">
-            {!allProperties.length
-              ? "There are no properties..."
-              : "All Properties"}
+            {!allExperiments.length
+              ? "There are no experiments..."
+              : "All Experiments"}
           </Typography>
           <Box
             mb={2}
@@ -83,9 +83,9 @@ const AllExperiments = () => {
               mb={{ xs: "20px", sm: 0 }}
             >
               <CustomButton
-                title={`Sort price ${currentPrice === "asc" ? "↑" : "↓"}`}
+                title={`Sort price ${currentDate === "asc" ? "↑" : "↓"}`}
                 handleClick={() => {
-                  toggleSort("price");
+                  toggleSort("date");
                 }}
                 backgroundColor="#475be8"
                 color="#fcfcfc"
@@ -114,12 +114,12 @@ const AllExperiments = () => {
                 required
                 inputProps={{ "aria-label": "Without label" }}
                 defaultValue=""
-                value={currentFilterValues.propertyType}
+                value={currentFilterValues.experimentType}
                 onChange={(e) => {
                   setFilters(
                     [
                       {
-                        field: "propertyType",
+                        field: "experimentType",
                         operator: "eq",
                         value: e.target.value,
                       },
@@ -130,14 +130,14 @@ const AllExperiments = () => {
               >
                 <MenuItem value="">All</MenuItem>
                 {[
-                  "Apartment",
-                  "Villa",
-                  "Farmhouse",
-                  "Condos",
-                  "Townhouse",
-                  "Duplex",
-                  "Studio",
-                  "Chalet",
+                  "Characterisation",
+                  "Electrochemistry",
+                  "Exploratory",
+                  "Fuel Cell",
+                  "Battery",
+                  "Voltammetry",
+                  "Impedance",
+                  "General",
                 ].map((type) => (
                   <MenuItem key={type} value={type.toLowerCase()}>
                     {type}
@@ -150,8 +150,8 @@ const AllExperiments = () => {
       </Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <CustomButton
-          title="Add Property"
-          handleClick={() => navigate("/properties/create")}
+          title="Add Experiment"
+          handleClick={() => navigate("/experiments/create")}
           backgroundColor="#475be8"
           color="#fcfcfc"
           icon={<Add />}
@@ -166,19 +166,20 @@ const AllExperiments = () => {
           gap: 3,
         }}
       >
-        {allProperties.map((property) => (
-          <PropertyCard
-            key={property._id}
-            id={property._id}
-            title={property.title}
-            price={property.price}
-            location={property.location}
-            photo={property.photo}
+        {allExperiments.map((experiment) => (
+          <ExperimentCard
+            key={experiment._id}
+            id={experiment._id}
+            title={experiment.title}
+            code={experiment.code}
+            date={experiment.date}
+            location={experiment.location}
+            photo={experiment.photo}
           />
         ))}
       </Box>
       {/* Pagination */}
-      {allProperties.length > 0 && (
+      {allExperiments.length > 0 && (
         <Box display="flex" gap={2} mt={3} flexWrap="wrap">
           <CustomButton
             title="Previous"

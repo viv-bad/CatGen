@@ -3,10 +3,10 @@ import { Typography, Box, Stack } from "@pankod/refine-mui";
 
 import {
   PieChart,
-  PropertyReferrals,
+  ExperimentReferrals,
   TotalRevenue,
-  PropertyCard,
-  TopAgent,
+  ExperimentCard,
+  TopResearcher,
 } from "components";
 
 const Home = () => {
@@ -66,7 +66,7 @@ const Home = () => {
         gap={4}
       >
         <TotalRevenue />
-        <PropertyReferrals />
+        <ExperimentReferrals />
       </Stack>
 
       <Box
@@ -85,12 +85,13 @@ const Home = () => {
 
         <Box mt={2.5} sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
           {latestProperties.map((property) => (
-            <PropertyCard
+            <ExperimentCard
               key={property._id}
               id={property._id}
               title={property.title}
+              code={property.code}
               location={property.location}
-              price={property.price}
+              date={property.date}
               photo={property.photo}
             />
           ))}
