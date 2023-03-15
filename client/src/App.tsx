@@ -62,7 +62,7 @@ function App() {
 
       if (profileObj) {
         const response = await fetch(
-          "https://property-dashboard-ioic.onrender.com/api/v1/users",
+          "http://localhost:8080/api/v1/researchers",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -78,11 +78,11 @@ function App() {
 
         if (response.status === 200) {
           localStorage.setItem(
-            "user",
+            "researcher",
             JSON.stringify({
               ...profileObj,
               avatar: profileObj.picture,
-              userid: data._id,
+              researcherid: data._id,
             })
           );
         } else {
@@ -99,7 +99,7 @@ function App() {
 
       if (token && typeof window !== "undefined") {
         localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        localStorage.removeItem("researcher");
         axios.defaults.headers.common = {};
         window.google?.accounts.id.revoke(token, () => {
           return Promise.resolve();
@@ -134,7 +134,7 @@ function App() {
       <RefineSnackbarProvider>
         <Refine
           dataProvider={dataProvider(
-            "https://property-dashboard-ioic.onrender.com/api/v1" //'https://api.fake-rest.refine.dev'
+            "https://api.fake-rest.refine.dev" //' //https://property-dashboard-ioic.onrender.com/api/v1
           )}
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}

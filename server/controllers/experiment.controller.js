@@ -1,5 +1,5 @@
 import Experiment from "../mongodb/models/experiment.js";
-import User from "../mongodb/models/user.js";
+import Researcher from "../mongodb/models/researcher.js";
 import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
@@ -75,9 +75,9 @@ const createExperiment = async (req, res) => {
     const session = await mongoose.startSession();
     session.startTransaction();
 
-    const user = await User.findOne({ email }).session(session);
+    const researcher = await Researcher.findOne({ email }).session(session);
 
-    if (!user) throw new Error("User not found");
+    if (!researcher) throw new Error("Researcher not found");
 
     const photoUrl = await cloudinary.uploader.upload(photo);
 
@@ -89,11 +89,11 @@ const createExperiment = async (req, res) => {
       location,
       date,
       photo: photoUrl.url,
-      creator: user._id,
+      creator: researcher._id,
     });
 
-    user.allExperiments.push(newExperiment._id);
-    await user.save({ session });
+    researcher.allExperiments.push(newExperiment._id);
+    await researcher.save({ session });
 
     await session.commitTransaction();
 

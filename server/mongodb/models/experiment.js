@@ -8,7 +8,7 @@ const ExperimentSchema = new mongoose.Schema({
   location: { type: String, required: true },
   date: { type: Date, required: true },
   photo: { type: String, required: true },
-  creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: "Researcher" },
 });
 
 const experimentModel = mongoose.model("Experiment", ExperimentSchema);
