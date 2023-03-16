@@ -2,7 +2,7 @@ import { Email, Phone, Place } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@pankod/refine-mui";
 
 import { ProfileProps, PropertyProps } from "interfaces/common";
-import PropertyCard from "./PropertyCard";
+import PropertyCard from "./ExperimentCard";
 
 function checkImage(url: any) {
   let img = new Image();

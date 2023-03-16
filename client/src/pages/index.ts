@@ -1,21 +1,21 @@
-import AgentProfile from "./agent-profile";
-import Agents from "./agent";
-import AllProperties from "./all-properties";
-import CreateProperty from "./create-property";
+import ResearcherProfile from "./researcher-profile";
+import Researchers from "./researcher";
+import AllExperiments from "./all-experiments";
+import CreateExperiment from "./create-experiment";
 import Home from "./home";
 import { Login } from "./login";
 import MyProfile from "./my-profile";
-import PropertyDetails from "./property-details";
-import EditProperty from "./edit-property";
+import ExperimentDetails from "./experiment-details";
+import EditExperiment from "./edit-experiment";
 
 export {
-  AgentProfile,
-  Agents,
-  AllProperties,
-  CreateProperty,
+  ResearcherProfile,
+  Researchers,
+  AllExperiments,
+  CreateExperiment,
   Home,
   Login,
   MyProfile,
-  PropertyDetails,
-  EditProperty,
+  ExperimentDetails,
+  EditExperiment,
 };

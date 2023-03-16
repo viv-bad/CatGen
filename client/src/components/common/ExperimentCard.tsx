@@ -10,7 +10,7 @@ import {
 } from "@pankod/refine-mui";
 import { PropertyCardProps } from "interfaces/property";
 
-const PropertyCard = ({
+const ExperimentCard = ({
   id,
   title,
   price,
@@ -78,4 +78,4 @@ const PropertyCard = ({
   );
 };
 
-export default PropertyCard;
+export default ExperimentCard;

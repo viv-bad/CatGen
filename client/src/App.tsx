@@ -28,13 +28,13 @@ import { Title, Sider, Layout, Header } from "components/layout";
 import {
   Login,
   Home,
-  Agents,
+  Researchers,
   MyProfile,
-  PropertyDetails,
-  AllProperties,
-  CreateProperty,
-  AgentProfile,
-  EditProperty,
+  ExperimentDetails,
+  AllExperiments,
+  CreateExperiment,
+  ResearcherProfile,
+  EditExperiment,
 } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
@@ -142,16 +142,19 @@ function App() {
           resources={[
             {
               name: "properties", //change to experiments
-              list: AllProperties,
-              show: PropertyDetails,
-              create: CreateProperty,
-              edit: EditProperty,
+              list: AllExperiments,
+              // list: AllProperties,
+              show: ExperimentDetails,
+              create: CreateExperiment,
+              edit: EditExperiment,
               icon: <ScienceOutlined />,
             },
             {
-              name: "agents",
-              list: Agents,
-              show: AgentProfile,
+              name: "agents", //change to researchers
+              // list: MuiInferencer,
+
+              list: Researchers,
+              show: ResearcherProfile,
               icon: <PeopleAltOutlined />,
             },
             // {
@@ -166,8 +169,9 @@ function App() {
             },
             {
               name: "my-profile",
-              options: { label: "My Profile" },
-              list: MyProfile,
+              // options: { label: "My Profile" },
+              // list: MyProfile,
+              list: MuiInferencer,
               icon: <AccountCircleOutlined />,
             },
           ]}

@@ -10,9 +10,9 @@ import {
   MenuItem,
 } from "@pankod/refine-mui";
 import { useNavigate } from "@pankod/refine-react-router-v6";
-import { PropertyCard, CustomButton } from "components";
+import { ExperimentCard, CustomButton } from "components";
 
-const AllProperties = () => {
+const AllExperiments = () => {
   const navigate = useNavigate();
   const {
     tableQueryResult: { data, isLoading, isError },
@@ -150,7 +150,7 @@ const AllProperties = () => {
       </Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <CustomButton
-          title="Add Property"
+          title="Add Experiment"
           handleClick={() => navigate("/properties/create")}
           backgroundColor="#475be8"
           color="#fcfcfc"
@@ -167,7 +167,7 @@ const AllProperties = () => {
         }}
       >
         {allProperties.map((property) => (
-          <PropertyCard
+          <ExperimentCard
             key={property._id}
             id={property._id}
             title={property.title}
@@ -227,4 +227,4 @@ const AllProperties = () => {
   );
 };
 
-export default AllProperties;
+export default AllExperiments;

@@ -1,26 +1,26 @@
 // common
 import Profile from "./common/Profile";
-import PropertyCard from "./common/PropertyCard";
+import ExperimentCard from "./common/ExperimentCard";
 import CustomButton from "./common/CustomButton";
 
 // charts
 import PieChart from "./charts/PieChart";
-import PropertyReferrals from "./charts/PropertyReferrals";
-import TotalRevenue from "./charts/TotalRevenue";
+import ExperimentReferrals from "./charts/ExperimentReferrals";
+import TotalExperiments from "./charts/TotalExperiments";
 
 // agent
-import AgentCard from "./agent/AgentCard";
+import ResearcherCard from "./researcher/ResearcherCard";
 
 // home
-import TopAgent from "./home/TopAgent";
+import TopResearcher from "./home/TopResearcher";
 
 export {
   Profile,
-  PropertyCard,
+  ExperimentCard,
   CustomButton,
   PieChart,
-  PropertyReferrals,
-  TotalRevenue,
-  AgentCard,
-  TopAgent,
+  ExperimentReferrals,
+  TotalExperiments,
+  ResearcherCard,
+  TopResearcher,
 };

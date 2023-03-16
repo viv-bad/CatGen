@@ -3,7 +3,7 @@ import { useGetIdentity } from "@pankod/refine-core";
 import { FieldValues, useForm } from "@pankod/refine-react-hook-form";
 import Form from "components/common/Form";
 
-const EditProperty = () => {
+const EditExperiment = () => {
   const { data: user } = useGetIdentity();
   const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
   const {
@@ -45,4 +45,4 @@ const EditProperty = () => {
   );
 };
 
-export default EditProperty;
+export default EditExperiment;

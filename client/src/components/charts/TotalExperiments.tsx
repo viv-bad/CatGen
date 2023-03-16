@@ -2,9 +2,9 @@ import React from "react";
 import { Box, Typography, Stack } from "@pankod/refine-mui";
 import ReactApexChart from "react-apexcharts";
 import { ArrowCircleUpRounded } from "@mui/icons-material";
-import { TotalRevenueOptions, TotalRevenueSeries } from "./chart.config";
+import { TotalRevenueOptions, TotalRevenueSeries } from "./chart.config"; //change to experiments
 
-const TotalRevenue = () => {
+const TotalExperiments = () => {
   return (
     <Box
       p={4}
@@ -50,4 +50,4 @@ const TotalRevenue = () => {
   );
 };
 
-export default TotalRevenue;
+export default TotalExperiments;

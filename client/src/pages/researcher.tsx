@@ -2,9 +2,9 @@ import React from "react";
 import { useList } from "@pankod/refine-core"; //quickly fetch list of useers
 import { Box, Typography } from "@pankod/refine-mui";
 
-import { AgentCard } from "components";
+import { ResearcherCard } from "components";
 
-const Agents = () => {
+const Researchers = () => {
   const { data, isLoading, isError } = useList({
     resource: "users",
   });
@@ -29,7 +29,7 @@ const Agents = () => {
           }}
         >
           {allAgents.map((agent) => (
-            <AgentCard
+            <ResearcherCard
               key={agent._id}
               id={agent._id}
               name={agent.name}
@@ -44,4 +44,4 @@ const Agents = () => {
   );
 };
 
-export default Agents;
+export default Researchers;

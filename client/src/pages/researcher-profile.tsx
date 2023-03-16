@@ -2,7 +2,7 @@ import { useOne } from "@pankod/refine-core";
 import { useParams } from "@pankod/refine-react-router-v6";
 import { Profile } from "components";
 
-const AgentProfile = () => {
+const ResearcherProfile = () => {
   const { id } = useParams();
 
   const { data, isLoading, isError } = useOne({
@@ -28,4 +28,4 @@ const AgentProfile = () => {
   );
 };
 
-export default AgentProfile;
+export default ResearcherProfile;

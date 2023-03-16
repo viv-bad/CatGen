@@ -14,7 +14,7 @@ const InfoBar = ({ icon, name }: InfoBarProps) => (
   </Stack>
 );
 
-const AgentCard = ({
+const ResearcherCard = ({
   id,
   email,
   name,
@@ -97,4 +97,4 @@ const AgentCard = ({
   );
 };
 
-export default AgentCard;
+export default ResearcherCard;

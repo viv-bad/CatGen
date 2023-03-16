@@ -14,7 +14,7 @@ app.use(express.json({ limit: "50mb" }));
 
 app.use("/api/v1/users", userRouter);
 
-app.use("/api/v1/properties", propertyRouter);
+app.use("/api/v1/experiments", propertyRouter);
 
 app.get("/", (req, res) => {
   res.send({ message: "Hello world!" });
