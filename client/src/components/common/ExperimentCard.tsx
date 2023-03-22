@@ -20,7 +20,7 @@ const ExperimentCard = ({
   return (
     <Card
       component={Link}
-      to={`/properties/show/${id}`}
+      to={`/experiments/show/${id}`}
       sx={{
         maxWidth: "330px",
         padding: "10px",

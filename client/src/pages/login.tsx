@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useLogin } from "@pankod/refine-core";
 import { Container, Box } from "@pankod/refine-mui";
 
-import { catgen, logo_catgen, yariga, logo } from "../assets";
+import { catgen, logo_catgen, yariga, logo, login_logo } from "../assets";
 
 import { CredentialResponse } from "../interfaces/google";
 
@@ -66,7 +66,7 @@ export const Login: React.FC = () => {
           }}
         >
           <div>
-            <img src={yariga} alt="Yariga Logo" />
+            <img src={login_logo} alt="login Logo" className="login_logo" />
           </div>
           <Box mt={4}>
             <GoogleButton />

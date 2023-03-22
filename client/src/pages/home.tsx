@@ -11,7 +11,7 @@ import {
 
 const Home = () => {
   const { data, isLoading, isError } = useList({
-    resource: "properties", //change to experiments
+    resource: "experiments", //change to experiments
     config: {
       pagination: {
         pageSize: 4,

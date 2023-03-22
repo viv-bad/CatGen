@@ -48,12 +48,12 @@ const ExperimentDetails = () => {
     if (response) {
       mutate(
         {
-          resource: "properties",
+          resource: "experiments",
           id: id as string,
         },
         {
           onSuccess: () => {
-            navigate("/properties");
+            navigate("/experiments");
           },
         }
       );

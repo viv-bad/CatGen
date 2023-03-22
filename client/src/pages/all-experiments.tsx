@@ -151,7 +151,7 @@ const AllExperiments = () => {
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <CustomButton
           title="Add Experiment"
-          handleClick={() => navigate("/properties/create")}
+          handleClick={() => navigate("/experiments/create")}
           backgroundColor="#475be8"
           color="#fcfcfc"
           icon={<Add />}

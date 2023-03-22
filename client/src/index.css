@@ -37,3 +37,7 @@ a {
     height: auto;
   }
 }
+
+.login_logo {
+  height: 40px;
+}
