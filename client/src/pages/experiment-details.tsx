@@ -69,8 +69,11 @@ const ExperimentDetails = () => {
         bgcolor="#fcfcfc"
         width="fix-content"
       >
-        <Typography fontSize={25} fontWeight={700} color="#11142d">
-          Details
+        <Typography fontSize={25} fontWeight={500} color="#11142d">
+          Details for experiment
+          <Typography fontSize={25} fontWeight={700} color="#11142d">
+            {experimentDetails.code}
+          </Typography>
         </Typography>
         <Box
           mt="20px"

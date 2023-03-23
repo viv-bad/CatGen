@@ -94,6 +94,7 @@ const AllExperiments = () => {
                 variant="outlined"
                 color="info"
                 placeholder="Search by title"
+                fullWidth
                 value={currentFilterValues.title}
                 onChange={(e) => {
                   setFilters([
@@ -171,6 +172,7 @@ const AllExperiments = () => {
             id={experiment._id}
             experimentType={experiment.experimentType}
             title={experiment.title}
+            code={experiment.code}
             date={experiment.date}
             location={experiment.location}
             photo={experiment.photo}

@@ -13,6 +13,7 @@ import { PropertyCardProps } from "interfaces/property";
 const ExperimentCard = ({
   id,
   title,
+  code,
   experimentType,
   date,
   location,
@@ -55,7 +56,7 @@ const ExperimentCard = ({
       >
         <Stack direction="column" gap={1}>
           <Typography fontSize={16} fontWeight={500} color="#11142d">
-            {title}
+            {code}
           </Typography>
           <Stack direction="row" gap={0.5} alignItems="flex-start">
             <Place sx={{ fontSize: 18, color: "#11142d", marginTop: 0.5 }} />
@@ -65,14 +66,15 @@ const ExperimentCard = ({
           </Stack>
         </Stack>
         <Stack direction="column" gap={1} alignItems="flex-end">
+          {/* add here - if experimentType === 'certainexperiment' render <Box bgcolor='colour....'></Box> */}
           <Box
             px={1.5}
             py={0.5}
             borderRadius={1}
-            bgcolor="#c4c8e1"
+            bgcolor="#b988ff"
             height="fit-content"
           >
-            <Typography fontSize={12} fontWeight={600} color="#11142d">
+            <Typography fontSize={12} fontWeight={600} color="#fcfcfc">
               {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
               {experimentType[0].toUpperCase() + experimentType.substring(1)}
             </Typography>

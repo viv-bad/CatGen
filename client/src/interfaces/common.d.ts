@@ -18,8 +18,10 @@ export interface ProfileProps {
 }
 
 export interface PropertyProps {
+  //change to ExperimentProps
   _id: string;
   title: string;
+  code: string;
   experimentType: string;
   description: string;
   location: string;

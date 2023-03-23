@@ -20,6 +20,7 @@ const getAllExperiments = async (req, res) => {
     _sort,
     title_like = "",
     experimentType = "",
+    //add filtering by code?
   } = req.query;
 
   const query = {};
@@ -63,6 +64,7 @@ const createExperiment = async (req, res) => {
   try {
     const {
       title,
+      code,
       description,
       experimentType,
       location,
@@ -82,6 +84,7 @@ const createExperiment = async (req, res) => {
 
     const newExperiment = await Experiment.create({
       title,
+      code,
       description,
       experimentType,
       location,
@@ -104,7 +107,7 @@ const createExperiment = async (req, res) => {
 const updateExperiment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, experimentType, location, date, photo } =
+    const { title, code, description, experimentType, location, date, photo } =
       req.body;
 
     const photoUrl = await cloudinary.uploader.upload(photo);
@@ -113,11 +116,12 @@ const updateExperiment = async (req, res) => {
       { _id: id },
       {
         title,
+        code,
         description,
         experimentType,
         location,
         date,
-        photo: photoUrl.url || photo,
+        photo: photoUrl.url || photo, //remove?
       }
     );
 

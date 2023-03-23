@@ -151,6 +151,7 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
               key={property._id}
               id={property._id}
               title={property.title}
+              code={property.code}
               experimentType={property.experimentType}
               location={property.location}
               date={property.date}

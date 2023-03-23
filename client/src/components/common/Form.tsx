@@ -81,7 +81,7 @@ const Form = ({
                 id="outlined-basic"
                 color="info"
                 variant="outlined"
-                {...register("title", {
+                {...register("code", {
                   required: true,
                 })}
               />
