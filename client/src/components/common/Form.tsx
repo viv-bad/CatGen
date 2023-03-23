@@ -140,13 +140,13 @@ const Form = ({
                 defaultValue="apartment"
                 {...register("experimentType", { required: true })}
               >
-                <MenuItem value="apartment">Characterisation</MenuItem>
-                <MenuItem value="villa">Electrochemistry</MenuItem>
-                <MenuItem value="farmhouse">Exploratory</MenuItem>
-                <MenuItem value="condos">Fuel Cell</MenuItem>
-                <MenuItem value="townhouse">Battery</MenuItem>
-                <MenuItem value="duplex">Voltammetry</MenuItem>
-                <MenuItem value="studio">Impedance</MenuItem>
+                <MenuItem value="characterisation">Characterisation</MenuItem>
+                <MenuItem value="electrochemistry">Electrochemistry</MenuItem>
+                <MenuItem value="exploratory">Exploratory</MenuItem>
+                <MenuItem value="photocatalysis">Photocatalysis</MenuItem>
+                <MenuItem value="battery">Battery</MenuItem>
+                <MenuItem value="fuel cell">Fuel Cell</MenuItem>
+                <MenuItem value="Impedance">Impedance</MenuItem>
               </Select>
             </FormControl>
 
@@ -166,9 +166,9 @@ const Form = ({
                 required
                 id="outlined-basic"
                 color="info"
-                type="number"
+                type="date"
                 variant="outlined"
-                {...register("price", {
+                {...register("date", {
                   required: true,
                 })}
               />

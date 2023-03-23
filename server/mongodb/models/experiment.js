@@ -5,7 +5,7 @@ const ExperimentSchema = new mongoose.Schema({
   description: { type: String, required: true },
   experimentType: { type: String, required: true },
   location: { type: String, required: true },
-  price: { type: Number, required: true },
+  date: { type: Date, required: true },
   photo: { type: String, required: true },
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });

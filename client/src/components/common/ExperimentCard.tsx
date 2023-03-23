@@ -13,10 +13,12 @@ import { PropertyCardProps } from "interfaces/property";
 const ExperimentCard = ({
   id,
   title,
-  price,
+  experimentType,
+  date,
   location,
   photo,
 }: PropertyCardProps) => {
+  // date = date.toString().split("T")[0].replaceAll("-", "/");
   return (
     <Card
       component={Link}
@@ -26,7 +28,7 @@ const ExperimentCard = ({
         padding: "10px",
         // textDecoration: "none",
         "&:hover": {
-          boxShadow: "0 22px 45px 2px rgba(176, 176, 176, 0.1",
+          boxShadow: "0 22px 45px 2px rgba(176, 176, 176, 0.2)",
         },
         cursor: "pointer",
       }}
@@ -62,17 +64,23 @@ const ExperimentCard = ({
             </Typography>
           </Stack>
         </Stack>
-        <Box
-          px={1.5}
-          py={0.5}
-          borderRadius={1}
-          bgcolor="#dadefa"
-          height="fit-content"
-        >
-          <Typography fontSize={12} fontWeight={600} color="#475be8">
-            ${price}
+        <Stack direction="column" gap={1} alignItems="flex-end">
+          <Box
+            px={1.5}
+            py={0.5}
+            borderRadius={1}
+            bgcolor="#c4c8e1"
+            height="fit-content"
+          >
+            <Typography fontSize={12} fontWeight={600} color="#11142d">
+              {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
+              {experimentType[0].toUpperCase() + experimentType.substring(1)}
+            </Typography>
+          </Box>
+          <Typography fontSize={14} color="#11142D">
+            {date.toString().split("T")[0].replaceAll("-", "/")}
           </Typography>
-        </Box>
+        </Stack>
       </CardContent>
     </Card>
   );

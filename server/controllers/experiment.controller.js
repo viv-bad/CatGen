@@ -12,7 +12,7 @@ cloudinary.config({
 });
 
 const getAllExperiments = async (req, res) => {
-  // fetach all properties based on pagination/filtering etc...
+  // fetch all experiments based on pagination/filtering etc...
   const {
     _end,
     _order,
@@ -66,7 +66,7 @@ const createExperiment = async (req, res) => {
       description,
       experimentType,
       location,
-      price,
+      date,
       photo,
       email,
     } = req.body;
@@ -85,7 +85,7 @@ const createExperiment = async (req, res) => {
       description,
       experimentType,
       location,
-      price,
+      date,
       photo: photoUrl.url,
       creator: user._id,
     });
@@ -104,7 +104,7 @@ const createExperiment = async (req, res) => {
 const updateExperiment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, experimentType, location, price, photo } =
+    const { title, description, experimentType, location, date, photo } =
       req.body;
 
     const photoUrl = await cloudinary.uploader.upload(photo);
@@ -116,7 +116,7 @@ const updateExperiment = async (req, res) => {
         description,
         experimentType,
         location,
-        price,
+        date,
         photo: photoUrl.url || photo,
       }
     );

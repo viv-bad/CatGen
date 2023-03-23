@@ -20,9 +20,10 @@ export interface ProfileProps {
 export interface PropertyProps {
   _id: string;
   title: string;
+  experimentType: string;
   description: string;
   location: string;
-  price: string;
+  date: Date;
   photo: string;
   creator: string;
 }

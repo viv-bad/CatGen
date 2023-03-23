@@ -35,9 +35,9 @@ export const validateForm = (formValues: FormValues) => {
         }
         break;
 
-      case "price":
-        if (!formValues.price) {
-          errors.message = "Price is required";
+      case "date":
+        if (!formValues.date) {
+          errors.message = "Date is required";
           hasError = true;
         }
         break;

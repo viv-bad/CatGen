@@ -26,14 +26,14 @@ const AllExperiments = () => {
     setFilters,
   } = useTable();
 
-  console.log(data);
+  // console.log(data);
 
-  const allProperties = data?.data ?? [];
+  const allExperiments = data?.data ?? [];
 
-  const currentPrice = sorter.find((item) => item.field === "price")?.order;
+  const currentDate = sorter.find((item) => item.field === "date")?.order;
 
   const toggleSort = (field: string) => {
-    setSorter([{ field, order: currentPrice === "asc" ? "desc" : "asc" }]);
+    setSorter([{ field, order: currentDate === "asc" ? "desc" : "asc" }]);
   };
 
   const currentFilterValues = useMemo(() => {
@@ -64,7 +64,7 @@ const AllExperiments = () => {
       >
         <Stack direction="column" width="100%">
           <Typography fontSize={25} fontWeight={700} color="#11142d">
-            {!allProperties.length
+            {!allExperiments.length
               ? "There are no experiments..."
               : "All Experiments"}
           </Typography>
@@ -83,9 +83,9 @@ const AllExperiments = () => {
               mb={{ xs: "20px", sm: 0 }}
             >
               <CustomButton
-                title={`Sort price ${currentPrice === "asc" ? "↑" : "↓"}`}
+                title={`Sort by date ${currentDate === "asc" ? "↑" : "↓"}`}
                 handleClick={() => {
-                  toggleSort("price");
+                  toggleSort("date");
                 }}
                 backgroundColor="#B153FF"
                 color="#fcfcfc"
@@ -130,14 +130,13 @@ const AllExperiments = () => {
               >
                 <MenuItem value="">All</MenuItem>
                 {[
-                  "Apartment",
-                  "Villa",
-                  "Farmhouse",
-                  "Condos",
-                  "Townhouse",
-                  "Duplex",
-                  "Studio",
-                  "Chalet",
+                  "Characterisation",
+                  "Electrochemistry",
+                  "Exploratory",
+                  "Photocatalysis",
+                  "Battery",
+                  "Fuel Cell",
+                  "Impedance",
                 ].map((type) => (
                   <MenuItem key={type} value={type.toLowerCase()}>
                     {type}
@@ -166,19 +165,20 @@ const AllExperiments = () => {
           gap: 3,
         }}
       >
-        {allProperties.map((property) => (
+        {allExperiments.map((experiment) => (
           <ExperimentCard
-            key={property._id}
-            id={property._id}
-            title={property.title}
-            price={property.price}
-            location={property.location}
-            photo={property.photo}
+            key={experiment._id}
+            id={experiment._id}
+            experimentType={experiment.experimentType}
+            title={experiment.title}
+            date={experiment.date}
+            location={experiment.location}
+            photo={experiment.photo}
           />
         ))}
       </Box>
       {/* Pagination */}
-      {allProperties.length > 0 && (
+      {allExperiments.length > 0 && (
         <Box display="flex" gap={2} mt={3} flexWrap="wrap">
           <CustomButton
             title="Previous"
