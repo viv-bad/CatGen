@@ -137,7 +137,7 @@ const Form = ({
                 displayEmpty
                 required
                 inputProps={{ "aria-label": "Without label" }}
-                defaultValue="apartment"
+                defaultValue="exploratory"
                 {...register("experimentType", { required: true })}
               >
                 <MenuItem value="characterisation">Characterisation</MenuItem>

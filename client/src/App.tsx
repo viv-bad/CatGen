@@ -145,7 +145,7 @@ function App() {
               icon: <ScienceOutlined />,
             },
             {
-              name: "agents", //change to researchers
+              name: "researchers", //change to researchers
               // list: MuiInferencer,
 
               list: Researchers,
@@ -164,9 +164,9 @@ function App() {
             },
             {
               name: "my-profile",
-              // options: { label: "My Profile" },
-              // list: MyProfile,
-              list: MuiInferencer,
+              options: { label: "My Profile" },
+              list: MyProfile,
+              // list: MuiInferencer,
               icon: <AccountCircleOutlined />,
             },
           ]}

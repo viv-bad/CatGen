@@ -29,7 +29,7 @@ const getUserInfoById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findOne({ _id: id }).populate("allProperties"); //populate generates individual property objects based on ID from user model
+    const user = await User.findOne({ _id: id }).populate("allExperiments"); //populate generates individual property objects based on ID from user model
 
     if (user) {
       res.status(200).json(user);

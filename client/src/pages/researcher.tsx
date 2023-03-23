@@ -9,7 +9,7 @@ const Researchers = () => {
     resource: "users",
   });
 
-  const allAgents = data?.data ?? [];
+  const allResearchers = data?.data ?? [];
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error.</div>;
 
@@ -17,7 +17,7 @@ const Researchers = () => {
     <div>
       <Box>
         <Typography fontSize={25} fontWeight={700} color="#11142d">
-          Agents List
+          Researcher List
         </Typography>
         <Box
           mt="20px"
@@ -28,14 +28,14 @@ const Researchers = () => {
             backgroundColor: "#fcfcfc",
           }}
         >
-          {allAgents.map((agent) => (
+          {allResearchers.map((researcher) => (
             <ResearcherCard
-              key={agent._id}
-              id={agent._id}
-              name={agent.name}
-              email={agent.email}
-              avatar={agent.avatar}
-              noOfProperties={agent.allProperties.length}
+              key={researcher._id}
+              id={researcher._id}
+              name={researcher.name}
+              email={researcher.email}
+              avatar={researcher.avatar}
+              noOfExperiments={researcher.allProperties.length}
             />
           ))}
         </Box>

@@ -272,7 +272,7 @@ const ExperimentDetails = () => {
                   icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                   handleClick={() => {
                     if (isCurrentUser) {
-                      navigate(`/properties/edit/${experimentDetails._id}`);
+                      navigate(`/experiments/edit/${experimentDetails._id}`);
                     }
                   }}
                 />

@@ -1,6 +1,12 @@
 import React from "react";
 import { AgentCardProp, InfoBarProps } from "interfaces/agent";
-import { EmailOutlined, LocationCity, Phone, Place } from "@mui/icons-material";
+import {
+  Biotech,
+  EmailOutlined,
+  LocationCity,
+  Phone,
+  Place,
+} from "@mui/icons-material";
 import { useGetIdentity } from "@pankod/refine-core";
 import { Box, Stack, Typography } from "@pankod/refine-mui";
 import { Link } from "@pankod/refine-react-router-v6";
@@ -19,14 +25,14 @@ const ResearcherCard = ({
   email,
   name,
   avatar,
-  noOfProperties,
+  noOfExperiments,
 }: AgentCardProp) => {
   const { data: currentUser } = useGetIdentity();
 
   const generateLink = () => {
     if (currentUser.email === email) return "/my-profile";
 
-    return `/agents/show/${id}`;
+    return `/researchers/show/${id}`;
   };
 
   return (
@@ -63,7 +69,7 @@ const ResearcherCard = ({
               {name}
             </Typography>
             <Typography fontSize={14} color="#808191">
-              Real-Estate Agent
+              Researcher
             </Typography>
           </Stack>
           <Stack
@@ -79,7 +85,10 @@ const ResearcherCard = ({
               name={email}
             />
 
-            <InfoBar icon={<Place sx={{ color: "#808191" }} />} name="London" />
+            <InfoBar
+              icon={<Place sx={{ color: "#808191" }} />}
+              name="Cambridge, UK"
+            />
 
             <InfoBar
               icon={<Phone sx={{ color: "#808191" }} />}
@@ -88,8 +97,8 @@ const ResearcherCard = ({
           </Stack>
 
           <InfoBar
-            icon={<LocationCity sx={{ color: "#808191" }} />}
-            name={`${noOfProperties} Properties`}
+            icon={<Biotech sx={{ color: "#808191" }} />}
+            name={`${noOfExperiments} Experiments`}
           />
         </Stack>
       </Box>

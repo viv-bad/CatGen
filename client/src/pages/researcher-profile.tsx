@@ -18,7 +18,7 @@ const ResearcherProfile = () => {
   return (
     <div>
       <Profile
-        type="Agent"
+        type="User"
         name={myProfile.name}
         email={myProfile.email}
         avatar={myProfile.avatar}
