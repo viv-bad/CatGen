@@ -101,7 +101,7 @@ const ExperimentDetails = () => {
                   color="#11142d"
                   textTransform="capitalize"
                 >
-                  {propertyDetails.propertyType}
+                  {propertyDetails.experimentType}
                 </Typography>
                 <Box>
                   {[1, 2, 3, 4, 5].map((star) => (

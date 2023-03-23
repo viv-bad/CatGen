@@ -8,7 +8,7 @@ export interface FormFieldProp {
 export interface FormValues {
     title: string,
     description: string,
-    propertyType: string,
+    experimentType: string,
     location: string,
     price: number | undefined,
 }

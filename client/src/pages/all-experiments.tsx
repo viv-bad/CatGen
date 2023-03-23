@@ -43,8 +43,8 @@ const AllExperiments = () => {
 
     return {
       title: logicalFilters.find((item) => item.field === "title")?.value || "",
-      propertyType:
-        logicalFilters.find((item) => item.field === "propertyType")?.value ||
+      experimentType:
+        logicalFilters.find((item) => item.field === "experimentType")?.value ||
         "",
     };
   }, [filters]);
@@ -65,8 +65,8 @@ const AllExperiments = () => {
         <Stack direction="column" width="100%">
           <Typography fontSize={25} fontWeight={700} color="#11142d">
             {!allProperties.length
-              ? "There are no properties..."
-              : "All Properties"}
+              ? "There are no experiments..."
+              : "All Experiments"}
           </Typography>
           <Box
             mb={2}
@@ -87,7 +87,7 @@ const AllExperiments = () => {
                 handleClick={() => {
                   toggleSort("price");
                 }}
-                backgroundColor="#475be8"
+                backgroundColor="#B153FF"
                 color="#fcfcfc"
               />
               <TextField
@@ -114,12 +114,12 @@ const AllExperiments = () => {
                 required
                 inputProps={{ "aria-label": "Without label" }}
                 defaultValue=""
-                value={currentFilterValues.propertyType}
+                value={currentFilterValues.experimentType}
                 onChange={(e) => {
                   setFilters(
                     [
                       {
-                        field: "propertyType",
+                        field: "experimentType",
                         operator: "eq",
                         value: e.target.value,
                       },
@@ -152,7 +152,7 @@ const AllExperiments = () => {
         <CustomButton
           title="Add Experiment"
           handleClick={() => navigate("/experiments/create")}
-          backgroundColor="#475be8"
+          backgroundColor="#B153FF"
           color="#fcfcfc"
           icon={<Add />}
         />
@@ -183,7 +183,7 @@ const AllExperiments = () => {
           <CustomButton
             title="Previous"
             handleClick={() => setCurrent((prev) => prev - 1)}
-            backgroundColor="#475be8"
+            backgroundColor="#B153FF"
             color="#fcfcfc"
             disabled={!(current > 1)}
           />
@@ -200,7 +200,7 @@ const AllExperiments = () => {
           <CustomButton
             title="Next"
             handleClick={() => setCurrent((prev) => prev + 1)}
-            backgroundColor="#475be8"
+            backgroundColor="#B153FF"
             color="#fcfcfc"
             disabled={current === pageCount}
           />

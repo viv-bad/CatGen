@@ -21,9 +21,9 @@ export const validateForm = (formValues: FormValues) => {
         }
         break;
 
-      case "propertyType":
-        if (!formValues.propertyType) {
-          errors.message = "Property type is required";
+      case "experimentType":
+        if (!formValues.experimentType) {
+          errors.message = "Experiment type is required";
           hasError = true;
         }
         break;
