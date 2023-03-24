@@ -61,13 +61,28 @@ const ExperimentDetails = () => {
       );
     }
   };
+
+  let tagColor;
+
+  if (experimentDetails.experimentType === "characterisation") {
+    tagColor = "#6C5DD3";
+  } else if (experimentDetails.experimentType === "electrochemistry") {
+    tagColor = "#7FBA7A";
+  } else if (experimentDetails.experimentType === "photocatalysis") {
+    tagColor = "#FFCE73";
+  } else if (experimentDetails.experimentType === "battery") {
+    tagColor = "#FFA2C0";
+  } else if (experimentDetails.experimentType === "exploratory") {
+    tagColor = "#F45252";
+  }
+
   return (
     <div>
       <Box
         borderRadius="15px"
         padding="20px"
         bgcolor="#fcfcfc"
-        width="fix-content"
+        width="fit-content"
       >
         <Typography fontSize={25} fontWeight={500} color="#11142d">
           Details for experiment
@@ -95,7 +110,7 @@ const ExperimentDetails = () => {
               className="property_details-img" //change to experiment_details-img
             />
 
-            <Box mt="15px">
+            <Box mt="5px">
               <Stack
                 direction="row"
                 justifyContent="space-between"
@@ -106,13 +121,14 @@ const ExperimentDetails = () => {
                   px={1.5}
                   py={0.5}
                   borderRadius={1}
-                  bgcolor="#c4c8e1"
+                  mb="15px"
+                  bgcolor={tagColor}
                   height="fit-content"
                 >
                   <Typography
                     fontSize={12}
                     fontWeight={600}
-                    color="#11142d"
+                    color="#fcfcfc"
                     textTransform="capitalize"
                   >
                     {experimentDetails.experimentType}

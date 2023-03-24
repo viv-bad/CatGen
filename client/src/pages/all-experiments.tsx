@@ -49,7 +49,7 @@ const AllExperiments = () => {
     };
   }, [filters]);
 
-  if (isLoading) return <Typography>Loading...</Typography>;
+  if (isLoading) return <Typography>Loading Experiments...</Typography>;
   if (isError) return <Typography>Error...</Typography>;
 
   return (

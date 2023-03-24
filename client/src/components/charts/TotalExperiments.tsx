@@ -16,7 +16,7 @@ const TotalExperiments = () => {
       borderRadius="15px"
     >
       <Typography fontSize={18} fontWeight={600} color="#11142d">
-        % Success Rate
+        % Experimental Success Rate
       </Typography>
       <Stack my="20px" direction="row" gap={4} flexWrap="wrap">
         <Typography fontSize={28} fontWeight={700} color="#11142d">
@@ -42,7 +42,7 @@ const TotalExperiments = () => {
 
       <ReactApexChart
         series={TotalRevenueSeries}
-        type="bar"
+        type="area"
         height={310}
         options={TotalRevenueOptions}
       />

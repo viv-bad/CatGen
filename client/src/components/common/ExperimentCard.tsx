@@ -19,6 +19,19 @@ const ExperimentCard = ({
   location,
   photo,
 }: PropertyCardProps) => {
+  let tagColor;
+
+  if (experimentType === "characterisation") {
+    tagColor = "#6C5DD3";
+  } else if (experimentType === "electrochemistry") {
+    tagColor = "#7FBA7A";
+  } else if (experimentType === "photocatalysis") {
+    tagColor = "#FFCE73";
+  } else if (experimentType === "battery") {
+    tagColor = "#FFA2C0";
+  } else if (experimentType === "exploratory") {
+    tagColor = "#F45252";
+  }
   // date = date.toString().split("T")[0].replaceAll("-", "/");
   return (
     <Card
@@ -67,11 +80,13 @@ const ExperimentCard = ({
         </Stack>
         <Stack direction="column" gap={1} alignItems="flex-end">
           {/* add here - if experimentType === 'certainexperiment' render <Box bgcolor='colour....'></Box> */}
+
           <Box
             px={1.5}
             py={0.5}
             borderRadius={1}
-            bgcolor="#b988ff"
+            // bgcolor="#b988ff"
+            bgcolor={tagColor}
             height="fit-content"
           >
             <Typography fontSize={12} fontWeight={600} color="#fcfcfc">

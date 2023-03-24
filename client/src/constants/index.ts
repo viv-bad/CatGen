@@ -6,22 +6,22 @@ export const propertyReferralsInfo = [
   },
   {
     title: "Electrochemistry",
-    percentage: 40,
+    percentage: 20,
     color: "#7FBA7A",
   },
   {
-    title: "Electrolyzer testing",
-    percentage: 50,
+    title: "Photocatalysis",
+    percentage: 8,
     color: "#FFCE73",
   },
   {
-    title: "Full-cell testing",
-    percentage: 80,
+    title: "Battery",
+    percentage: 6,
     color: "#FFA2C0",
   },
   {
     title: "Exploratory",
-    percentage: 15,
+    percentage: 2,
     color: "#F45252",
   },
 ];

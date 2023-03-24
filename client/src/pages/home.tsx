@@ -19,9 +19,9 @@ const Home = () => {
     },
   });
 
-  const latestProperties = data?.data ?? [];
+  const latestExperiments = data?.data ?? [];
 
-  if (isLoading) return <Typography>Loading...</Typography>;
+  if (isLoading) return <Typography>Loading dashboard...</Typography>;
   if (isError) return <Typography>Something went wrong...</Typography>;
 
   return (
@@ -32,15 +32,15 @@ const Home = () => {
       <Box mt="20px" display="flex" flexWrap="wrap" gap={4}>
         <PieChart
           title="Experiments completed this month"
-          value={684}
-          series={[75, 25]}
+          value={68}
+          series={[68, 10]}
           colors={["#8C00FF", "#0081FF"]}
         />
 
         <PieChart
           title="Experiments to do this month"
-          value={550}
-          series={[60, 40]}
+          value={10}
+          series={[68, 78]}
           colors={["#8C00FF", "#0081FF"]}
         />
 
@@ -84,16 +84,16 @@ const Home = () => {
         </Typography>
 
         <Box mt={2.5} sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
-          {latestProperties.map((property) => (
+          {latestExperiments.map((experiment) => (
             <ExperimentCard
-              key={property._id}
-              id={property._id}
-              title={property.title}
-              code={property.code}
-              experimentType={property.experimentType}
-              location={property.location}
-              date={property.date}
-              photo={property.photo}
+              key={experiment._id}
+              id={experiment._id}
+              title={experiment.title}
+              code={experiment.code}
+              experimentType={experiment.experimentType}
+              location={experiment.location}
+              date={experiment.date}
+              photo={experiment.photo}
             />
           ))}
         </Box>
