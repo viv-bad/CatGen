@@ -89,9 +89,15 @@ const ExperimentCard = ({
             bgcolor={tagColor}
             height="fit-content"
           >
-            <Typography fontSize={12} fontWeight={600} color="#fcfcfc">
+            <Typography
+              fontSize={12}
+              fontWeight={600}
+              color="#fcfcfc"
+              textTransform="capitalize"
+            >
               {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
-              {experimentType[0].toUpperCase() + experimentType.substring(1)}
+              {/* {experimentType[0].toUpperCase() + experimentType.substring(1)} */}
+              {experimentType}
             </Typography>
           </Box>
           <Typography fontSize={14} color="#11142D">

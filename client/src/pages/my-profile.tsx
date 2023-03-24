@@ -11,7 +11,7 @@ const MyProfile = () => {
 
   const myProfile = data?.data ?? [];
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading profile...</div>;
   if (isError) return <div>Error</div>;
 
   return (

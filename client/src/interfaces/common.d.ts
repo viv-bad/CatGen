@@ -28,7 +28,6 @@ export interface PropertyProps {
   date: Date;
   photo: string;
   creator: string;
-  rating: number;
 }
 
 export interface FormProps {

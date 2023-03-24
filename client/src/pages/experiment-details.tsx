@@ -1,4 +1,4 @@
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Box, Stack, Rating } from "@mui/material";
 import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -143,9 +143,24 @@ const ExperimentDetails = () => {
                   {/* {[1, 2, 3, 4, 5].map((star) => (
                     <Star key={`star-${1}`} sx={{ color: "#f2c94c" }} /> // make dynamic
                   ))} */}
-                  {ratingStars.map((star) => (
-                    <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
-                  ))}
+                  {/* {ratingStars.map((star) => (
+                    <Star
+                      key={`star-${star}`}
+                      sx={{ color: "#f2c94c", opacity: 0.8 }}
+                    /> // make dynamic
+                  ))} */}
+
+                  <Rating
+                    name="rating-feedback"
+                    // defaultValue={experimentDetails.rating}
+                    value={experimentDetails.rating}
+                    readOnly
+                    max={5}
+                    emptyIcon={
+                      <Star style={{ opacity: 0.55 }} fontSize="inherit" />
+                    }
+                    // onClick={() => console.log()}
+                  />
                 </Box>
               </Stack>
 
@@ -160,7 +175,7 @@ const ExperimentDetails = () => {
                     fontSize={22}
                     fontWeight={600}
                     color="#11142d"
-                    textTransform="capitalize"
+                    // textTransform="capitalize"
                   >
                     {experimentDetails.title}
                   </Typography>
