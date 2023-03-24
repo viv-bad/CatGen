@@ -173,6 +173,35 @@ const Form = ({
                 })}
               />
             </FormControl>
+
+            {/* add rating out of 5 here */}
+            <FormControl sx={{ flex: 1 }}>
+              <FormHelperText
+                sx={{
+                  fontWeight: 500,
+                  margin: "10px 0",
+                  fontSize: 16,
+                  color: "#11142d",
+                }}
+              >
+                Experiment rating
+              </FormHelperText>
+              <Select
+                variant="outlined"
+                color="info"
+                displayEmpty
+                required
+                inputProps={{ "aria-label": "Without label" }}
+                defaultValue="1"
+                {...register("rating", { required: true })}
+              >
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+              </Select>
+            </FormControl>
           </Stack>
 
           <FormControl>

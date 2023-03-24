@@ -8,6 +8,7 @@ const ExperimentSchema = new mongoose.Schema({
   location: { type: String, required: true },
   date: { type: Date, required: true },
   photo: { type: String, required: true },
+  rating: { type: Number, min: 0, max: 5 },
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 

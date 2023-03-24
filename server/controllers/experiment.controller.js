@@ -71,6 +71,7 @@ const createExperiment = async (req, res) => {
       date,
       photo,
       email,
+      rating,
     } = req.body;
 
     const session = await mongoose.startSession();
@@ -91,6 +92,7 @@ const createExperiment = async (req, res) => {
       date,
       photo: photoUrl.url,
       creator: user._id,
+      rating,
     });
 
     user.allExperiments.push(newExperiment._id);
@@ -107,8 +109,16 @@ const createExperiment = async (req, res) => {
 const updateExperiment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, code, description, experimentType, location, date, photo } =
-      req.body;
+    const {
+      title,
+      code,
+      description,
+      experimentType,
+      location,
+      date,
+      photo,
+      rating,
+    } = req.body;
 
     const photoUrl = await cloudinary.uploader.upload(photo);
 
@@ -122,6 +132,7 @@ const updateExperiment = async (req, res) => {
         location,
         date,
         photo: photoUrl.url || photo, //remove?
+        rating,
       }
     );
 

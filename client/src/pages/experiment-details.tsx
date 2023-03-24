@@ -76,6 +76,11 @@ const ExperimentDetails = () => {
     tagColor = "#F45252";
   }
 
+  const ratingStars = Array.from(
+    { length: experimentDetails.rating },
+    (_, i) => i + 1
+  );
+
   return (
     <div>
       <Box
@@ -135,7 +140,10 @@ const ExperimentDetails = () => {
                   </Typography>
                 </Box>
                 <Box>
-                  {[1, 2, 3, 4, 5].map((star) => (
+                  {/* {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={`star-${1}`} sx={{ color: "#f2c94c" }} /> // make dynamic
+                  ))} */}
+                  {ratingStars.map((star) => (
                     <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
                   ))}
                 </Box>
