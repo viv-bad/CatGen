@@ -40,6 +40,8 @@ const ExperimentCard = ({
       sx={{
         maxWidth: "1000px",
         padding: "10px",
+        // bgcolor: "#f4f5fe",
+        bgcolor: "#ffffff",
         // textDecoration: "none",
         "&:hover": {
           boxShadow: "0 22px 45px 2px rgba(176, 176, 176, 0.2)",
