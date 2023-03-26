@@ -56,6 +56,7 @@ const AllExperiments = () => {
     <Box>
       <Box
         mt="20px"
+        display="flex"
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -72,78 +73,88 @@ const AllExperiments = () => {
             mb={2}
             mt={3}
             display="flex"
-            width="84$"
+            flexDirection="row"
+            width="84%"
             justifyContent="space-between"
             flexWrap="wrap"
           >
             <Box
               display="flex"
+              flexDirection="column"
               gap={2}
               flexWrap="wrap"
               mb={{ xs: "20px", sm: 0 }}
             >
-              <CustomButton
-                title={`Sort by date ${currentDate === "asc" ? "↑" : "↓"}`}
-                handleClick={() => {
-                  toggleSort("date");
-                }}
-                backgroundColor="#B153FF"
-                color="#fcfcfc"
-              />
-              <TextField
-                variant="outlined"
-                color="info"
-                placeholder="Search by title"
-                fullWidth
-                value={currentFilterValues.title}
-                onChange={(e) => {
-                  setFilters([
-                    {
-                      field: "title",
-                      operator: "contains",
-                      value: e.currentTarget.value
-                        ? e.currentTarget.value
-                        : undefined,
-                    },
-                  ]);
-                }}
-              />
-              <Select
-                variant="outlined"
-                color="info"
-                displayEmpty
-                required
-                inputProps={{ "aria-label": "Without label" }}
-                defaultValue=""
-                value={currentFilterValues.experimentType}
-                onChange={(e) => {
-                  setFilters(
-                    [
-                      {
-                        field: "experimentType",
-                        operator: "eq",
-                        value: e.target.value,
-                      },
-                    ],
-                    "replace"
-                  );
-                }}
+              <Box
+                display="flex"
+                gap={2}
+                justifyContent="space-evenly"
+                alignItems="center"
+                justifyItems="center"
               >
-                <MenuItem value="">All</MenuItem>
-                {[
-                  "Characterisation",
-                  "Electrochemistry",
-                  "Exploratory",
-                  "Photocatalysis",
-                  "Battery",
-                  "Fuel Cell",
-                  "Impedance",
-                ].map((type) => (
-                  <MenuItem key={type} value={type.toLowerCase()}>
-                    {type}
-                  </MenuItem>
-                ))}
-              </Select>
+                <CustomButton
+                  title={`Sort by date ${currentDate === "asc" ? "↑" : "↓"}`}
+                  handleClick={() => {
+                    toggleSort("date");
+                  }}
+                  backgroundColor="#B153FF"
+                  color="#fcfcfc"
+                />
+                <TextField
+                  variant="outlined"
+                  color="info"
+                  placeholder="Search by title"
+                  fullWidth
+                  value={currentFilterValues.title}
+                  onChange={(e) => {
+                    setFilters([
+                      {
+                        field: "title",
+                        operator: "contains",
+                        value: e.currentTarget.value
+                          ? e.currentTarget.value
+                          : undefined,
+                      },
+                    ]);
+                  }}
+                />
+                <Select
+                  variant="outlined"
+                  color="info"
+                  displayEmpty
+                  required
+                  inputProps={{ "aria-label": "Without label" }}
+                  defaultValue=""
+                  value={currentFilterValues.experimentType}
+                  onChange={(e) => {
+                    setFilters(
+                      [
+                        {
+                          field: "experimentType",
+                          operator: "eq",
+                          value: e.target.value,
+                        },
+                      ],
+                      "replace"
+                    );
+                  }}
+                >
+                  <MenuItem value="">All</MenuItem>
+                  {[
+                    "Characterisation",
+                    "Electrochemistry",
+                    "Exploratory",
+                    "Photocatalysis",
+                    "Battery",
+                    "Fuel Cell",
+                    "Impedance",
+                  ].map((type) => (
+                    <MenuItem key={type} value={type.toLowerCase()}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Box>
             </Box>
           </Box>
         </Stack>

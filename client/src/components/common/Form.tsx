@@ -14,6 +14,7 @@ import {
 
 import { FormProps } from "interfaces/common";
 import CustomButton from "./CustomButton";
+import { Star } from "@mui/icons-material";
 
 const Form = ({
   type,
@@ -195,11 +196,37 @@ const Form = ({
                 defaultValue="1"
                 {...register("rating", { required: true })}
               >
-                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={1}>
+                  {[1].map((star) => (
+                    <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
+                  ))}
+                </MenuItem>
+                <MenuItem value={2}>
+                  {[1, 2].map((star) => (
+                    <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
+                  ))}
+                </MenuItem>
+                <MenuItem value={3}>
+                  {[1, 2, 3].map((star) => (
+                    <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
+                  ))}
+                </MenuItem>
+                <MenuItem value={4}>
+                  {[1, 2, 3, 4].map((star) => (
+                    <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
+                  ))}
+                </MenuItem>
+                <MenuItem value={5}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={`star-${star}`} sx={{ color: "#f2c94c" }} /> // make dynamic
+                  ))}
+                </MenuItem>
+
+                {/* <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
                 <MenuItem value={3}>3</MenuItem>
                 <MenuItem value={4}>4</MenuItem>
-                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={5}>5</MenuItem> */}
               </Select>
             </FormControl>
           </Stack>

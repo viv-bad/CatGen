@@ -38,7 +38,7 @@ const ExperimentCard = ({
       component={Link}
       to={`/experiments/show/${id}`}
       sx={{
-        maxWidth: "330px",
+        maxWidth: "1000px",
         padding: "10px",
         // textDecoration: "none",
         "&:hover": {
