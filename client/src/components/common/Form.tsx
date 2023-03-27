@@ -57,7 +57,7 @@ const Form = ({
                 width="75%"
                 required
                 id="outlined-basic"
-                color="info"
+                // color="info"
                 variant="outlined"
                 {...register("title", {
                   required: true,
