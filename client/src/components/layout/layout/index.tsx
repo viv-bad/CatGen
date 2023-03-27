@@ -32,8 +32,8 @@ export const Layout: React.FC<LayoutProps> = ({
           sx={{
             p: { xs: 1, md: 2, lg: 3 },
             flexGrow: 1,
-            // bgcolor: (theme) => theme.palette.background.default,
-            bgcolor: "#dadefa",
+            bgcolor: (theme) => theme.palette.background.default,
+            // bgcolor: "#dadefa",
           }}
         >
           {children}

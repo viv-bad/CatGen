@@ -16,8 +16,6 @@ import {
   PeopleAltOutlined,
   ScienceOutlined,
   ShowChart,
-  StarOutlineRounded,
-  VillaOutlined,
 } from "@mui/icons-material";
 
 import dataProvider from "@pankod/refine-simple-rest";
@@ -36,6 +34,7 @@ import {
   CreateExperiment,
   ResearcherProfile,
   EditExperiment,
+  CreatePlot,
 } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
@@ -151,8 +150,10 @@ function App() {
             {
               name: "create-plot",
               options: { label: "Create Plot" },
+              create: CreatePlot,
+              list: CreatePlot,
               // list: Home,
-              list: MuiInferencer,
+              // list: MuiInferencer,
               icon: <ShowChart />,
             },
             {

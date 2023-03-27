@@ -28,7 +28,7 @@ const Form = ({
   return (
     <Box>
       <Typography fontSize={25} fontWeight={700} color="#11142d">
-        {type} a property
+        {type} an experiment
       </Typography>
       <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
         <form
