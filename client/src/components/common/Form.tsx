@@ -54,15 +54,20 @@ const Form = ({
                 Experiment Title
               </FormHelperText>
               <TextField
-                style={{
-                  width: "100%",
-                  background: "transparent",
-                  fontSize: "16px",
-                  borderColor: "rgba(0,0,0,0.23)",
-                  borderRadius: 6,
-                  padding: 10,
-                  color: "#919191",
+                sx={{
+                  input: {
+                    color: "black",
+                  },
                 }}
+                // style={{
+                //   width: "100%",
+                //   background: "transparent",
+                //   fontSize: "16px",
+                //   borderColor: "rgba(0,0,0,0.23)",
+                //   borderRadius: 6,
+                //   padding: 10,
+                //   color: "#919191",
+                // }}
                 width="75%"
                 required
                 id="outlined-basic"
