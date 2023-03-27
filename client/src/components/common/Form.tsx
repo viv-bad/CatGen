@@ -48,20 +48,14 @@ const Form = ({
                   fontWeight: 500,
                   margin: "10px 0px",
                   fontSize: 16,
-                  color: "#11142d",
+                  input: { color: "#11142d" },
                 }}
               >
                 Experiment Title
               </FormHelperText>
               <TextField
-                style={{
-                  width: "100%",
-                  background: "transparent",
-                  fontSize: "16px",
-                  borderColor: "rgba(0,0,0,0.23)",
-                  borderRadius: 6,
-                  padding: 10,
-                  color: "#919191",
+                sx={{
+                  input: { color: "#1142d" },
                 }}
                 width="75%"
                 required
@@ -80,12 +74,15 @@ const Form = ({
                   fontWeight: 500,
                   margin: "10px 0px",
                   fontSize: 16,
-                  color: "#11142d",
+                  input: { color: "#11142d" },
                 }}
               >
                 Experiment Code
               </FormHelperText>
               <TextField
+                sx={{
+                  input: { color: "#1142d" },
+                }}
                 width="25%"
                 required
                 id="outlined-basic"
@@ -104,7 +101,7 @@ const Form = ({
                 fontWeight: 500,
                 margin: "10px 0px",
                 fontSize: 16,
-                color: "#11142d",
+                input: { color: "#11142d" },
               }}
             >
               Experimental Details
@@ -136,12 +133,15 @@ const Form = ({
                   fontWeight: 500,
                   margin: "10px 0",
                   fontSize: 16,
-                  color: "#11142d",
+                  input: { color: "#11142d" },
                 }}
               >
                 Select Experiment Type
               </FormHelperText>
               <Select
+                sx={{
+                  input: { color: "#1142d" },
+                }}
                 variant="outlined"
                 color="info"
                 displayEmpty
@@ -166,7 +166,7 @@ const Form = ({
                   fontWeight: 500,
                   margin: "10px 0px",
                   fontSize: 16,
-                  color: "#11142d",
+                  input: { color: "#11142d" },
                 }}
               >
                 Date of Experiment
@@ -191,7 +191,7 @@ const Form = ({
                   fontWeight: 500,
                   margin: "10px 0",
                   fontSize: 16,
-                  color: "#11142d",
+                  input: { color: "#11142d" },
                 }}
               >
                 Experiment rating
@@ -246,7 +246,7 @@ const Form = ({
                 fontWeight: 500,
                 margin: "10px 0px",
                 fontSize: 16,
-                color: "#11142d",
+                input: { color: "#11142d" },
               }}
             >
               Enter Location
