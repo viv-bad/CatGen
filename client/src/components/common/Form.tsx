@@ -54,11 +54,11 @@ const Form = ({
                 Experiment Title
               </FormHelperText>
               <TextField
-                sx={{
-                  input: {
-                    color: "black",
-                  },
-                }}
+                // sx={{
+                //   input: {
+                //     color: "black",
+                //   },
+                // }}
                 // style={{
                 //   width: "100%",
                 //   background: "transparent",
