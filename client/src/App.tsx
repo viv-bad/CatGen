@@ -35,6 +35,7 @@ import {
   ResearcherProfile,
   EditExperiment,
   CreatePlot,
+  CreatePlotTwo,
 } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
@@ -150,8 +151,10 @@ function App() {
             {
               name: "create-plot",
               options: { label: "Create Plot" },
-              create: CreatePlot,
-              list: CreatePlot,
+              // create: CreatePlot,
+              // list: CreatePlot,
+              create: CreatePlotTwo,
+              list: CreatePlotTwo,
               // list: Home,
               // list: MuiInferencer,
               icon: <ShowChart />,

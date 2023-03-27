@@ -8,6 +8,7 @@ import MyProfile from "./my-profile";
 import ExperimentDetails from "./experiment-details";
 import EditExperiment from "./edit-experiment";
 import CreatePlot from "./create-plot";
+import CreatePlotTwo from "./create-plot-2";
 export {
   ResearcherProfile,
   Researchers,
@@ -19,4 +20,5 @@ export {
   ExperimentDetails,
   EditExperiment,
   CreatePlot,
+  CreatePlotTwo,
 };
