@@ -15,6 +15,7 @@ import {
   ChatBubbleOutline,
   PeopleAltOutlined,
   ScienceOutlined,
+  ShowChart,
   StarOutlineRounded,
   VillaOutlined,
 } from "@mui/icons-material";
@@ -146,6 +147,13 @@ function App() {
               create: CreateExperiment,
               edit: EditExperiment,
               icon: <ScienceOutlined />,
+            },
+            {
+              name: "create-plot",
+              options: { label: "Create Plot" },
+              // list: Home,
+              list: MuiInferencer,
+              icon: <ShowChart />,
             },
             {
               name: "researchers", //change to researchers

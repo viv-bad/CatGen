@@ -49,6 +49,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
       }}
     >
       <ThemeProvider theme={LightTheme}>{children}</ThemeProvider>
+      {/* can change theme value to ternary operator to switch to dark theme */}
     </ColorModeContext.Provider>
   );
 };
