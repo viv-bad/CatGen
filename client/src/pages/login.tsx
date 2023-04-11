@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import { useLogin } from "@pankod/refine-core";
-import { Container, Box } from "@pankod/refine-mui";
+import { useEffect, useRef, useState } from "react";
+import { useLogin, useAuthenticated } from "@pankod/refine-core";
+import { Container, Box, LoadingButton, Typography } from "@pankod/refine-mui";
 
 import { catgen, logo_catgen, yariga, logo, login_logo } from "../assets";
 
@@ -8,9 +8,14 @@ import { CredentialResponse } from "../interfaces/google";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
-
+  const [loggingIn, setLoggingIn] = useState(false);
+  // const { isLoading, data } = useAuthenticated();
   const GoogleButton = (): JSX.Element => {
     const divRef = useRef<HTMLDivElement>(null);
+
+    // if (isLoading) {
+    //   console.log("loading...");
+    // }
 
     useEffect(() => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
@@ -23,6 +28,7 @@ export const Login: React.FC = () => {
           client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
+              setLoggingIn(true);
               login(res);
             }
           },
@@ -71,6 +77,9 @@ export const Login: React.FC = () => {
           <Box mt={4}>
             <GoogleButton />
           </Box>
+          {loggingIn ? (
+            <Typography mt={1}>Logging in. Please be patient...</Typography>
+          ) : null}
         </Box>
       </Container>
     </Box>

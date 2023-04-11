@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Refine, AuthProvider } from "@pankod/refine-core";
+import { Refine, AuthProvider, useAuthenticated } from "@pankod/refine-core";
 import {
   notificationProvider,
   RefineSnackbarProvider,
@@ -8,6 +8,7 @@ import {
   GlobalStyles,
   ReadyPage,
   ErrorComponent,
+  LoadingButton,
 } from "@pankod/refine-mui";
 
 import {
@@ -91,7 +92,7 @@ function App() {
       }
 
       localStorage.setItem("token", `${credential}`);
-
+      // console.log("done");
       return Promise.resolve();
     },
     logout: () => {
@@ -111,7 +112,7 @@ function App() {
     checkError: () => Promise.resolve(),
     checkAuth: async () => {
       const token = localStorage.getItem("token");
-
+      // console.log("checking...");
       if (token) {
         return Promise.resolve();
       }
