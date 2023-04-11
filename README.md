@@ -2,6 +2,14 @@
 
 ## MongoDB | Express | Node.js | React.js | refine | MaterialUI
 
+### How to login
+
+You can either login with your own google account, or use our dummy account (details below).
+Dummy account details:
+
+- username: vbcodingpractice@gmail.com
+- password: codingpractice1234
+
 ### The Problem
 
 Life in an experimental laboratory means generating hundreds if not thousands of experimental datasets monthly.

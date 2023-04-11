@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useLogin, useAuthenticated } from "@pankod/refine-core";
-import { Container, Box, LoadingButton, Typography } from "@pankod/refine-mui";
+import {
+  Container,
+  Box,
+  LoadingButton,
+  Stack,
+  Typography,
+  CircularProgress,
+} from "@pankod/refine-mui";
 
 import { catgen, logo_catgen, yariga, logo, login_logo } from "../assets";
 
@@ -16,6 +23,9 @@ export const Login: React.FC = () => {
     // if (isLoading) {
     //   console.log("loading...");
     // }
+    const loginProgress = (
+      <Typography mt={1}>Logging in. Please be patient...</Typography>
+    );
 
     useEffect(() => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
@@ -78,8 +88,21 @@ export const Login: React.FC = () => {
             <GoogleButton />
           </Box>
           {loggingIn ? (
-            <Typography mt={1}>Logging in. Please be patient...</Typography>
-          ) : null}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              mt={2}
+            >
+              <CircularProgress color="success" />
+              <Typography mt={1}>Logging in. Please be patient...</Typography>
+            </Box>
+          ) : // <CircularProgress />
+          // <Typography mt={1}>Logging in. Please be patient...</Typography>
+          null}
         </Box>
       </Container>
     </Box>
