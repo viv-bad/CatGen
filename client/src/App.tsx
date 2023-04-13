@@ -16,6 +16,8 @@ import {
   ChatBubbleOutline,
   PeopleAltOutlined,
   ScienceOutlined,
+  ShowChart,
+  ShowChartOutlined,
   StarOutlineRounded,
   VillaOutlined,
 } from "@mui/icons-material";
@@ -32,13 +34,16 @@ import {
   Researchers,
   MyProfile,
   ExperimentDetails,
+  PlotDetails,
   AllExperiments,
   CreateExperiment,
+  CreatePlot,
   ResearcherProfile,
   EditExperiment,
 } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
+import AllPlots from "pages/all-plots";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -134,7 +139,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider("https://catgen.onrender.com/api/v1")} //http://localhost:8080/api/v1/users
+          dataProvider={dataProvider("http://localhost:8080/api/v1")} //http://localhost:8080/api/v1 //https://catgen.onrender.com/api/v1
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
@@ -147,6 +152,15 @@ function App() {
               create: CreateExperiment,
               edit: EditExperiment,
               icon: <ScienceOutlined />,
+            },
+            {
+              name: "plots", //change to experiments
+              list: AllPlots,
+              // list: MuiInferencer,
+              show: PlotDetails,
+              create: CreatePlot,
+              // edit: EditExperiment,
+              icon: <ShowChartOutlined />,
             },
             {
               name: "researchers", //change to researchers
