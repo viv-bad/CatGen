@@ -38,7 +38,7 @@ const PlotForm = ({
     <div>
       <Box>
         <Typography fontSize={25} fontWeight={700} color="#11142d">
-          Create a plot
+          {type} a plot
         </Typography>
         <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
           <form

@@ -9,7 +9,7 @@ import {
   Select,
   MenuItem,
 } from "@pankod/refine-mui";
-import { useNavigate } from "@pankod/refine-react-router-v6";
+import { Link, useNavigate } from "@pankod/refine-react-router-v6";
 import { ExperimentCard, CustomButton } from "components";
 import PlotCard from "components/common/PlotCard";
 
@@ -179,19 +179,20 @@ const AllPlots = () => {
         }}
       >
         {allPlots.map((experiment) => (
-          //@ts-ignore
-          <PlotCard
-            key={experiment._id}
-            title={experiment.title}
-            code={experiment.code}
-            experimentType={experiment.experimentType}
-            date={experiment.date}
-            id={experiment._id}
-            x={experiment["x"]}
-            y={experiment["y"]}
-            xAxisLabel={experiment["xAxisLabel"]}
-            yAxisLabel={experiment["yAxisLabel"]}
-          />
+          <Link to={`/plots/show/${experiment._id}`}>
+            <PlotCard
+              key={experiment._id}
+              title={experiment.title}
+              code={experiment.code}
+              experimentType={experiment.experimentType}
+              date={experiment.date}
+              id={experiment._id}
+              x={experiment["x"]}
+              y={experiment["y"]}
+              xAxisLabel={experiment["xAxisLabel"]}
+              yAxisLabel={experiment["yAxisLabel"]}
+            />
+          </Link>
         ))}
       </Box>
       {/* Pagination */}

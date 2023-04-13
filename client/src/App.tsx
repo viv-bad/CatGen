@@ -44,6 +44,7 @@ import {
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
 import AllPlots from "pages/all-plots";
+import EditPlot from "pages/edit-plot";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -159,7 +160,7 @@ function App() {
               // list: MuiInferencer,
               show: PlotDetails,
               create: CreatePlot,
-              // edit: EditExperiment,
+              edit: EditPlot,
               icon: <ShowChartOutlined />,
             },
             {

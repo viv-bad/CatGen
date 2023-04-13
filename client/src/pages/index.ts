@@ -10,6 +10,7 @@ import MyProfile from "./my-profile";
 import ExperimentDetails from "./experiment-details";
 import PlotDetails from "./plot-details";
 import EditExperiment from "./edit-experiment";
+import EditPlot from "./edit-plot";
 
 export {
   ResearcherProfile,
@@ -24,4 +25,5 @@ export {
   ExperimentDetails,
   PlotDetails,
   EditExperiment,
+  EditPlot,
 };
