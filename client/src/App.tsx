@@ -146,7 +146,7 @@ function App() {
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "experiments", //change to experiments
+              name: "experiments",
               list: AllExperiments,
               // list: AllProperties,
               show: ExperimentDetails,
@@ -155,7 +155,7 @@ function App() {
               icon: <ScienceOutlined />,
             },
             {
-              name: "plots", //change to experiments
+              name: "plots",
               list: AllPlots,
               // list: MuiInferencer,
               show: PlotDetails,

@@ -16,7 +16,7 @@ const PlotDetails = () => {
   const { data, isLoading, isError } = queryResult;
 
   const plotDetails = data?.data ?? {};
-  console.log(plotDetails);
+  // console.log(plotDetails);
   const {
     title,
     code,

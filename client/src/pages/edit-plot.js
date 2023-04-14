@@ -33,7 +33,7 @@ const EditPlot = () => {
   const fileReader = new FileReader();
 
   const handleFileUpload1 = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (file) {
       fileReader.onload = async function (event) {
         //@ts-ignore
@@ -112,6 +112,12 @@ const EditPlot = () => {
     }
     navigate("/plots"); //change to make it navigate to /id of what you just uploaded
   };
+
+  const onFinishHandler = async (data) => {
+    if (!file) return alert("Please upload an experiment image.");
+
+    await onFinish({ ...data, x: xData1, y: yData1 });
+  };
   return (
     <div>
       <div
@@ -145,12 +151,12 @@ const EditPlot = () => {
 
       <PlotForm
         //@ts-ignore
-        type="Update"
+        type="Edit"
         register={register}
         onFinish={onFinish}
         formLoading={formLoading}
         handleSubmit={handleSubmit}
-        // onFinishHandler={onFinishHandler}
+        onFinishHandler={onFinishHandler}
         // handleTitleChange={handleTitleChange}
         // handleCodeChange={handleCodeChange}
         // handleDateChange={handleDateChange}
