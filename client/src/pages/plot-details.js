@@ -1,10 +1,26 @@
 import { Box, Typography, Stack, Rating } from "@mui/material";
-import { Place, Star } from "@mui/icons-material";
+import {
+  AccountBalance,
+  ChatBubble,
+  Delete,
+  Edit,
+  Phone,
+  Place,
+  School,
+  Star,
+} from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { redirect, useParams, useNavigate } from "react-router-dom";
 import LineChart from "components/charts/LineChart";
 import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
+import { CustomButton } from "components";
+
+function checkImage(url) {
+  const img = new Image();
+  img.src = url;
+  return img.width !== 0 && img.height !== 0;
+}
 
 const PlotDetails = () => {
   const navigate = useNavigate();
@@ -41,11 +57,7 @@ const PlotDetails = () => {
     return <div>Something went wrong!</div>;
   }
 
-  // console.log(user.email);
-  // console.log(plotDetails.creator);
-  // const isCurrentUser = user.email === plotDetails.creator.email;
-
-  // console.log(isCurrentUser);
+  const isCurrentUser = user.email === plotDetails.creator.email;
 
   const handleDeletePlot = () => {
     const response = window.confirm(
@@ -207,11 +219,135 @@ const PlotDetails = () => {
             </Box>
           </Box>
           {/* add new box here for user avatar */}
+          <Box
+            width="100%"
+            flex={1}
+            maxWidth={326}
+            display="flex"
+            flexDirection="column"
+            gap="20px"
+          >
+            <Stack
+              width="100%"
+              p={2}
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              border="1px solid #E4E4E4"
+              borderRadius={2}
+            >
+              <Stack
+                mt={2}
+                justifyContent="center"
+                alignItems="center"
+                textAlign="center"
+              >
+                <img
+                  src={
+                    checkImage(plotDetails.creator.avatar)
+                      ? plotDetails.creator.avatar
+                      : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
+                  }
+                  alt="avatar"
+                  width={90}
+                  height={90}
+                  style={{
+                    borderRadius: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+
+                <Box mt="15px">
+                  <Typography fontSize={18} fontWeight={600} color="#11142D">
+                    {plotDetails.creator.name}
+                  </Typography>
+                  <Typography mt="5px" fontSize={14} fontWeight={400}>
+                    Researcher
+                  </Typography>
+                </Box>
+                <Stack
+                  mt="15px"
+                  direction="column"
+                  alignItems="center"
+                  gap={0.5}
+                >
+                  <Stack mt="5px" direction="row" alignItems="center" gap={0.5}>
+                    <AccountBalance sx={{ color: "#808191" }} />
+                    <Typography fontSize={14} fontWeight={400} color="#808191">
+                      Department of Chemistry
+                    </Typography>
+                  </Stack>
+                  <Stack mt="5px" direction="row" alignItems="center" gap={0.5}>
+                    <School sx={{ color: "#808191" }} />
+                    <Typography fontSize={14} fontWeight={400} color="#808191">
+                      University of Cambridge
+                    </Typography>
+                  </Stack>
+                </Stack>
+                <Typography
+                  mt={1.5}
+                  fontSize={16}
+                  fontWeight={600}
+                  color="#11142D"
+                >
+                  {plotDetails.creator.allPlots.length} Plots
+                  {/* change above to 'allExperiments' */}
+                </Typography>
+              </Stack>
+              <Stack
+                width="100%"
+                mt="25px"
+                direction="row"
+                flexWrap="wrap"
+                gap={2}
+              >
+                <CustomButton
+                  title={!isCurrentUser ? "Message" : "Edit"}
+                  backgroundColor="#29bf73"
+                  color="#FCFCFC"
+                  fullWidth
+                  icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
+                  handleClick={() => {
+                    if (isCurrentUser) {
+                      navigate(`/plots/edit/${plotDetails._id}`);
+                    }
+                  }}
+                />
+                <CustomButton
+                  title={!isCurrentUser ? "Call" : "Delete"}
+                  backgroundColor={!isCurrentUser ? "#2ED480" : "#d42e2e"}
+                  color="#FCFCFC"
+                  fullWidth
+                  icon={!isCurrentUser ? <Phone /> : <Delete />}
+                  handleClick={() => {
+                    if (isCurrentUser) handleDeletePlot();
+                  }}
+                />
+              </Stack>
+            </Stack>
+            {/* <Stack>
+              <img
+                src="https://serpmedia.org/scigen/images/googlemaps-nyc-standard.png?crc=3787557525"
+                width="100%"
+                height={306}
+                style={{ borderRadius: 10, objectFit: "cover" }}
+              />
+            </Stack>
+
+            <Box>
+              <CustomButton
+                title="Book Now"
+                backgroundColor="#475BE8"
+                color="#FCFCFC"
+                fullWidth
+              />
+            </Box> */}
+          </Box>
         </Box>
-        <button onClick={() => handleDeletePlot()}>DELETE</button>
+        {/* <button onClick={() => handleDeletePlot()}>DELETE</button>
         <button onClick={() => navigate(`/plots/edit/${plotDetails._id}`)}>
           EDIT
-        </button>
+        </button> */}
       </Box>
 
       {/*  */}

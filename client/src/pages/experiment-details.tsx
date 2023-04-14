@@ -292,7 +292,7 @@ const ExperimentDetails = () => {
                   fontWeight={600}
                   color="#11142D"
                 >
-                  {experimentDetails.creator.allProperties.length} Experiments
+                  {experimentDetails.creator.allExperiments.length} Experiments
                   {/* change above to 'allExperiments' */}
                 </Typography>
               </Stack>
