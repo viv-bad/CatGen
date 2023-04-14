@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true },
   avatar: { type: String, required: true },
   allExperiments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Experiment" }], //populate this with all property docs from property model
+  allPlots: [{ type: mongoose.Schema.Types.ObjectId, ref: "Plot" }], //populate this with all property docs from property model
 });
 
 const userModel = mongoose.model("User", UserSchema);

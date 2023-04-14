@@ -30,7 +30,7 @@ const AllPlots = () => {
   // console.log(data);
 
   const allPlots = data?.data ?? [];
-  console.log(allPlots);
+  // console.log(allPlots);
 
   const currentDate = sorter.find((item) => item.field === "date")?.order;
 
@@ -179,7 +179,7 @@ const AllPlots = () => {
         }}
       >
         {allPlots.map((experiment) => (
-          <Link to={`/plots/show/${experiment._id}`}>
+          <Link to={`/plots/show/${experiment._id}`} key={experiment._id}>
             <PlotCard
               key={experiment._id}
               title={experiment.title}

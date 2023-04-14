@@ -32,7 +32,7 @@ const ExperimentDetails = () => {
   const { data, isLoading, isError } = queryResult;
 
   const experimentDetails = data?.data ?? {};
-
+  // console.log(experimentDetails);
   if (isLoading) {
     return <div>Loading experiment...</div>;
   }

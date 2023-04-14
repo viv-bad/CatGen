@@ -8,7 +8,8 @@ import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
 
 const PlotDetails = () => {
   const navigate = useNavigate();
-  const { data: user } = useGetIdentity();
+  const { data: user } = useGetIdentity({});
+
   const { queryResult } = useShow();
   const { mutate } = useDelete();
   const { id } = useParams();
@@ -16,7 +17,7 @@ const PlotDetails = () => {
   const { data, isLoading, isError } = queryResult;
 
   const plotDetails = data?.data ?? {};
-  // console.log(plotDetails);
+  console.log(plotDetails);
   const {
     title,
     code,
@@ -39,6 +40,12 @@ const PlotDetails = () => {
   if (isError) {
     return <div>Something went wrong!</div>;
   }
+
+  // console.log(user.email);
+  // console.log(plotDetails.creator);
+  // const isCurrentUser = user.email === plotDetails.creator.email;
+
+  // console.log(isCurrentUser);
 
   const handleDeletePlot = () => {
     const response = window.confirm(
@@ -177,8 +184,8 @@ const PlotDetails = () => {
                   >
                     Completed on:{" "}
                     {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
-                    {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
-                    {date}
+                    {date.toString().split("T")[0].replaceAll("-", "/")}
+                    {/* {date} */}
                   </Typography>
                   <Stack direction="row" alignItems="flex-end" gap={1}>
                     <Typography

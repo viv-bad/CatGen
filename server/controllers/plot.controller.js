@@ -1,51 +1,63 @@
 import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import bodyParser from "body-parser";
-const app = express();
 import Plot from "../mongodb/models/plot.js";
+import User from "../mongodb/models/user.js";
+import mongoose from "mongoose";
 
-// require("dotenv").config();
-
-// app.use(express.json({ limit: "50mb" }));
-// app.use(express.urlencoded({ limit: "50mb", extended: true }));
-// app.use(cors());
-// app.use(bodyParser.json({ limit: "50mb" }));
-// app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-
-// const uri = `${process.env.DB_URI}`;
-
-// mongoose.connect(uri);
+const app = express();
 
 const getAllPlots = async (req, res) => {
+  const {
+    _end,
+    _order,
+    _start,
+    _sort,
+    title_like = "",
+    experimentType = "",
+    //add filtering by code?
+  } = req.query;
+
+  const query = {};
+
+  if (experimentType !== "") {
+    query.experimentType = experimentType;
+  }
+  if (title_like) {
+    query.title = { $regex: title_like, $options: "i" }; //case insentitive 'i'
+  }
   try {
-    const data = await Plot.find({}).sort({ createdAt: -1 });
-    res.send(data);
-    // console.log(data);
+    const count = await Plot.countDocuments({ query });
+
+    const plots = await Plot.find(query)
+      .limit(_end)
+      .skip(_start)
+      .sort({ [_sort]: _order });
+
+    res.header("x-total-count", count);
+    res.header("Access-Control-Expose-Headers", "x-total-count");
+
+    res.status(200).json(plots);
   } catch (err) {
-    console.log(err);
+    res.status(500).send({ message: err.message });
   }
 };
 
-// app.get("/plots", async (req, res) => {
-//   try {
-//     const data = await Plot.find({}).sort({ createdAt: -1 });
-//     res.send(data);
-//     // console.log(data);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
-
 const getPlotDetail = async (req, res) => {
-  try {
-    const id = req.params.id;
-    // console.log(id);
-    const data = await Plot.findById(id);
-    res.send(data);
-  } catch (err) {
-    res.send(err);
+  const { id } = req.params;
+  const plotExists = await Plot.findOne({ _id: id }).populate("creator");
+
+  if (plotExists) {
+    res.status(200).json(plotExists);
+  } else {
+    res.status(404).json({ message: "Plot not found" });
   }
+  // try {
+  //   const id = req.params.id;
+  //   // console.log(id);
+  //   const data = await Plot.findById(id);
+  //   res.send(data);
+  // } catch (err) {
+  //   res.send(err);
+  // }
 };
 
 // app.get("/plots/:id", async (req, res) => {
@@ -60,26 +72,52 @@ const getPlotDetail = async (req, res) => {
 // });
 
 const createPlot = async (req, res) => {
-  const data = req.body;
-  const newData = new Plot(data);
+  try {
+    const {
+      title,
+      code,
+      description,
+      experimentType,
+      location,
+      date,
+      email,
+      rating,
+      x,
+      y,
+      xAxisLabel,
+      yAxisLabel,
+    } = req.body;
+    // console.log(email);
+    const session = await mongoose.startSession();
+    session.startTransaction();
 
-  await newData.save();
-  // console.log(newData);
-  res.json(newData);
+    const user = await User.findOne({ email }).session(session);
 
-  // console.log("Create data");
+    if (!user) throw new Error("User not found");
+
+    const newPlot = await Plot.create({
+      title,
+      code,
+      description,
+      experimentType,
+      location,
+      date,
+      rating,
+      x,
+      y,
+      xAxisLabel,
+      yAxisLabel,
+      creator: user._id,
+    });
+
+    user.allPlots.push(newPlot._id);
+    await user.save({ session });
+    await session.commitTransaction();
+    res.status(200).json({ message: "Plot created successfully." });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
-
-// app.post("/createPlot", async (req, res) => {
-//   const data = req.body;
-//   const newData = new Plot(data);
-
-//   await newData.save();
-//   // console.log(newData);
-//   res.json(newData);
-
-//   // console.log("Create data");
-// });
 
 const deletePlot = async (req, res) => {
   try {
@@ -92,18 +130,6 @@ const deletePlot = async (req, res) => {
     res.json(err);
   }
 };
-
-// app.delete("/deletePlot/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-
-//     const response = await Plot.findByIdAndDelete(id);
-//     // console.log(response);
-//     res.json(response);
-//   } catch (err) {
-//     res.json(err);
-//   }
-// });
 
 const updatePlot = async (req, res) => {
   try {
@@ -145,50 +171,5 @@ const updatePlot = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-// app.patch("/updatePlot/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     const {
-//       title,
-//       code,
-//       description,
-//       experimentType,
-//       date,
-//       location,
-//       rating,
-//       xAxisLabel,
-//       yAxisLabel,
-//       x,
-//       y,
-//     } = req.body;
-
-//     await Plot.findByIdAndUpdate(
-//       { _id: id },
-//       {
-//         title,
-//         code,
-//         description,
-//         experimentType,
-//         date,
-//         location,
-//         rating,
-//         xAxisLabel,
-//         yAxisLabel,
-//         x,
-//         y,
-//       }
-//     );
-
-//     res.status(200).json({ message: "Plot successfully updated." });
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// });
-
-// app.listen(3001, () => {
-//   console.log("Server running on port 3001");
-// });
 
 export { getAllPlots, createPlot, getPlotDetail, updatePlot, deletePlot };

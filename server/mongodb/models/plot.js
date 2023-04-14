@@ -7,21 +7,21 @@ const PlotSchema = new mongoose.Schema(
     code: { type: String, required: true },
     description: { type: String },
     experimentType: { type: String, default: "exploratory" },
-    location: { type: String, required: true },
+    location: { type: String },
     date: { type: Date },
     xAxisLabel: { type: String },
     yAxisLabel: { type: String },
     x: Array,
     y: Array,
     rating: { type: Number, min: 0, max: 5 },
-    // creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  },
-  {
-    timestamps: true,
+    creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   }
+  // {
+  //   timestamps: true,
+  // }
 );
 
-const plotModel = mongoose.model("plot", PlotSchema);
+const plotModel = mongoose.model("Plot", PlotSchema);
 
 // module.exports = PlotModel;
 export default plotModel;

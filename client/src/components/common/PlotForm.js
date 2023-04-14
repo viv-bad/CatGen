@@ -16,22 +16,22 @@ import { Star } from "@mui/icons-material";
 const PlotForm = ({
   type,
   register,
-  onFinish,
-  formLoading,
-  onFinishHandler,
   handleSubmit,
-  handleTitleChange,
-  handleCodeChange,
-  handleDateChange,
-  handleExperimentTypeChange,
-  handleXAxisLabelChange,
-  handleYAxisLabelChange,
-  handleDescriptionChange,
-  handleLocationChange,
-  handleRatingChange,
   handleOnFileChange,
   handleFileUpload1,
+  formLoading,
+  onFinishHandler,
   file,
+  fileData,
+  // handleTitleChange,
+  // handleCodeChange,
+  // handleDateChange,
+  // handleExperimentTypeChange,
+  // handleXAxisLabelChange,
+  // handleYAxisLabelChange,
+  // handleDescriptionChange,
+  // handleLocationChange,
+  // handleRatingChange,
 }) => {
   // const [fileName, setFileName] = useState("");
   return (
@@ -49,7 +49,8 @@ const PlotForm = ({
               flexDirection: "column",
               gap: "20px",
             }}
-            // onSubmit={handleSubmit(onFinishHandler)}
+            onSubmit={handleSubmit(onFinishHandler)}
+            // onSubmit={() => onFinishHandler}
             // onSubmit={() => console.log("form submitted")}
             // onSubmit={handleFileUpload1}
           >
@@ -72,8 +73,8 @@ const PlotForm = ({
                   color="info"
                   variant="outlined"
                   // add handlechanger here onChange
-                  onChange={handleTitleChange}
-                  // {...register("title", { required: true })}
+                  // onChange={handleTitleChange}
+                  {...register("title", { required: true })}
                 />
               </FormControl>
 
@@ -97,7 +98,10 @@ const PlotForm = ({
                   color="info"
                   variant="outlined"
                   // add handleChanger here
-                  onChange={handleCodeChange}
+                  // onChange={handleCodeChange}
+                  {...register("code", {
+                    required: true,
+                  })}
                 />
               </FormControl>
             </Stack>
@@ -129,7 +133,10 @@ const PlotForm = ({
                   padding: 10,
                   color: "#919191",
                 }}
-                onChange={handleDescriptionChange}
+                // onChange={handleDescriptionChange}
+                {...register("description", {
+                  required: true,
+                })}
               />
             </FormControl>
 
@@ -154,7 +161,9 @@ const PlotForm = ({
                   required
                   inputProps={{ "aria-label": "Without label" }}
                   defaultValue="exploratory"
-                  onChange={handleExperimentTypeChange}
+                  // onChange={handleExperimentTypeChange}
+                  {...register("experimentType", { required: true })}
+
                   //onchange handler here////////////////////////////////////////////////////////////////
                 >
                   <MenuItem value="characterisation">Characterisation</MenuItem>
@@ -185,7 +194,10 @@ const PlotForm = ({
                   color="info"
                   type="date"
                   variant="outlined"
-                  onChange={handleDateChange}
+                  // onChange={handleDateChange}
+                  {...register("date", {
+                    required: true,
+                  })}
                 />
               </FormControl>
               {/* location here */}
@@ -206,11 +218,11 @@ const PlotForm = ({
                   id="outlined-basic"
                   color="info"
                   variant="outlined"
-                  onChange={handleLocationChange}
+                  // onChange={handleLocationChange}
                   // onLocationChange here
-                  // {...register("location", {
-                  //   required: true,
-                  // })}
+                  {...register("location", {
+                    required: true,
+                  })}
                 />
               </FormControl>
               {/* ratings here */}
@@ -232,9 +244,9 @@ const PlotForm = ({
                   required
                   inputProps={{ "aria-label": "Without label" }}
                   defaultValue="3"
-                  onChange={handleRatingChange}
+                  // onChange={handleRatingChange}
                   // onChange function here?
-                  // {...register("rating", { required: true })}
+                  {...register("rating", { required: true })}
                 >
                   <MenuItem value={1}>
                     {[1].map((star) => (
@@ -292,7 +304,8 @@ const PlotForm = ({
                   color="info"
                   variant="outlined"
                   // add handlechanger here onChange
-                  onChange={handleXAxisLabelChange}
+                  // onChange={handleXAxisLabelChange}
+                  {...register("xAxisLabel", { required: true })}
                 />
               </FormControl>
 
@@ -316,7 +329,9 @@ const PlotForm = ({
                   color="info"
                   variant="outlined"
                   // add handleChanger here
-                  onChange={handleYAxisLabelChange}
+                  // onChange={handleYAxisLabelChange}
+                  {...register("yAxisLabel", { required: true })}
+                  // {...register("y", { required: true })}
                 />
               </FormControl>
             </Stack>
@@ -326,11 +341,19 @@ const PlotForm = ({
               type={"file"}
               id={"csvFileInput"}
               accept={".csv"}
+              // onChange={(e) => handleOnFileChange(e)}
               onChange={handleOnFileChange}
+              // onChange={(e) => {
+              //   handleFileUpload1(e);
+              // }}
+              // onChange={(e) => {
+              //   handleFileUpload1(e);
+              // }}
             />
             <button
               type="submit"
               onClick={(e) => {
+                // e.preventDefault();
                 handleFileUpload1(e);
               }}
               style={{ width: "5%" }}
