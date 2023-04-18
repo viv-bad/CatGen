@@ -1,61 +1,77 @@
-import { Typography, Box, Stack, Rating } from "@mui/material";
-import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
-import { useParams, useNavigate } from "react-router-dom";
+import { Box, Typography, Stack, Rating } from "@mui/material";
 import {
+  AccountBalance,
   ChatBubble,
   Delete,
   Edit,
   Phone,
   Place,
-  Star,
   School,
-  AccountBalance,
+  Star,
 } from "@mui/icons-material";
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { redirect, useParams, useNavigate } from "react-router-dom";
+import LineChart from "components/charts/LineChart";
+import { useDelete, useGetIdentity, useShow } from "@pankod/refine-core";
 import { CustomButton } from "components";
 
-function checkImage(url: any) {
+function checkImage(url) {
   const img = new Image();
   img.src = url;
   return img.width !== 0 && img.height !== 0;
 }
 
-const ExperimentDetails = () => {
+const PlotDetails = () => {
   const navigate = useNavigate();
-  const { data: user } = useGetIdentity({
-    // v3LegacyAuthProviderCompatible: true,
-  });
+  const { data: user } = useGetIdentity({});
+
   const { queryResult } = useShow();
   const { mutate } = useDelete();
   const { id } = useParams();
 
   const { data, isLoading, isError } = queryResult;
 
-  const experimentDetails = data?.data ?? {};
-  // console.log(experimentDetails);
+  const plotDetails = data?.data ?? {};
+  // console.log(plotDetails);
+  const {
+    title,
+    code,
+    description,
+    _id,
+    experimentType,
+    location,
+    rating,
+    date,
+    x,
+    y,
+    xAxisLabel,
+    yAxisLabel,
+  } = plotDetails;
+
   if (isLoading) {
-    return <div>Loading experiment...</div>;
+    return <div>Loading plot...</div>;
   }
 
   if (isError) {
     return <div>Something went wrong!</div>;
   }
 
-  const isCurrentUser = user.email === experimentDetails.creator.email;
+  const isCurrentUser = user.email === plotDetails.creator.email;
 
-  const handleDeleteExperiment = () => {
+  const handleDeletePlot = () => {
     const response = window.confirm(
-      `Are you sure you want to delete this experiment?`
+      `Are you sure you want to delete this plot?`
     );
     if (response) {
       mutate(
         {
-          resource: "experiments",
-          id: id as string,
+          resource: "plots",
+          id,
         },
         {
           onSuccess: () => {
-            navigate("/experiments");
+            navigate("/plots");
           },
         }
       );
@@ -64,23 +80,17 @@ const ExperimentDetails = () => {
 
   let tagColor;
 
-  if (experimentDetails.experimentType === "characterisation") {
+  if (experimentType === "characterisation") {
     tagColor = "#6C5DD3";
-  } else if (experimentDetails.experimentType === "electrochemistry") {
+  } else if (experimentType === "electrochemistry") {
     tagColor = "#7FBA7A";
-  } else if (experimentDetails.experimentType === "photocatalysis") {
+  } else if (experimentType === "photocatalysis") {
     tagColor = "#FFCE73";
-  } else if (experimentDetails.experimentType === "battery") {
+  } else if (experimentType === "battery") {
     tagColor = "#FFA2C0";
-  } else if (experimentDetails.experimentType === "exploratory") {
+  } else if (experimentType === "exploratory") {
     tagColor = "#F45252";
   }
-
-  const ratingStars = Array.from(
-    { length: experimentDetails.rating },
-    (_, i) => i + 1
-  );
-
   return (
     <div>
       <Box
@@ -90,10 +100,10 @@ const ExperimentDetails = () => {
         width="fit-content"
       >
         <Typography fontSize={25} fontWeight={500} color="#11142d">
-          Details for experiment
-          <Typography fontSize={25} fontWeight={700} color="#11142d">
-            {experimentDetails.code}
-          </Typography>
+          Details for plot
+        </Typography>
+        <Typography fontSize={25} fontWeight={700} color="#11142d">
+          {code}
         </Typography>
         <Box
           mt="20px"
@@ -101,18 +111,20 @@ const ExperimentDetails = () => {
           flexDirection={{ xs: "column", lg: "row" }}
           gap={4}
         >
-          <Box flex={1} maxWidth={764}>
-            <img
-              src={experimentDetails.photo}
-              alt={experimentDetails.title}
-              height={400}
-              // height={400}
-              // width={400}
-              style={{
-                objectFit: "scale-down",
-                borderRadius: "10px",
-              }}
-              className="property_details-img" //change to experiment_details-img
+          <Box flex={1} maxwidth={764}>
+            <LineChart
+              height={600}
+              width={800}
+              x1={x}
+              y1={y}
+              title={title}
+              code={code}
+              description={description}
+              experimentType={experimentType}
+              date={date}
+              xAxisLabel={xAxisLabel}
+              yAxisLabel={yAxisLabel}
+              className="property_details_img"
             />
 
             <Box mt="5px">
@@ -136,24 +148,15 @@ const ExperimentDetails = () => {
                     color="#fcfcfc"
                     textTransform="capitalize"
                   >
-                    {experimentDetails.experimentType}
+                    {experimentType}
                   </Typography>
                 </Box>
                 <Box>
-                  {/* {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={`star-${1}`} sx={{ color: "#f2c94c" }} /> // make dynamic
-                  ))} */}
-                  {/* {ratingStars.map((star) => (
-                    <Star
-                      key={`star-${star}`}
-                      sx={{ color: "#f2c94c", opacity: 0.8 }}
-                    /> // make dynamic
-                  ))} */}
-
                   <Rating
                     name="rating-feedback"
-                    // defaultValue={experimentDetails.rating}
-                    value={experimentDetails.rating}
+                    // defaultValue={rating}
+                    // value={experimentDetails.rating}
+                    value={rating ? rating : 3}
                     readOnly
                     max={5}
                     emptyIcon={
@@ -171,25 +174,20 @@ const ExperimentDetails = () => {
                 alignItems="center"
               >
                 <Box>
-                  <Typography
-                    fontSize={22}
-                    fontWeight={600}
-                    color="#11142d"
-                    // textTransform="capitalize"
-                  >
-                    {experimentDetails.title}
+                  <Typography fontSize={22} fontWeight={600} color="#11142d">
+                    {title}
                   </Typography>
 
                   <Stack mt={0.5} direction="row" alignItems="center">
                     <Place sx={{ color: "#808191" }} />
                     <Typography fontSize={14} color="#808191">
-                      {experimentDetails.location}
+                      {/* {experimentDetails.location} */}
+                      {location}
                     </Typography>
                   </Stack>
                 </Box>
 
                 <Box>
-                  {/* add furhter property details here, such as price, description etc... */}
                   <Typography
                     fontSize={16}
                     fontWeight={600}
@@ -197,10 +195,8 @@ const ExperimentDetails = () => {
                     color="#11142d"
                   >
                     Completed on:{" "}
-                    {experimentDetails.date
-                      .toString()
-                      .split("T")[0]
-                      .replaceAll("-", "/")}
+                    {date.toString().split("T")[0].replaceAll("-", "/")}
+                    {/* {date} */}
                   </Typography>
                   <Stack direction="row" alignItems="flex-end" gap={1}>
                     <Typography
@@ -213,14 +209,15 @@ const ExperimentDetails = () => {
               </Stack>
               <Stack mt="25px" direction="column" gap="10px">
                 <Typography fontSize={18} color="#11142D">
-                  Experimental Details
+                  Plot Details
                 </Typography>
                 <Typography fontSize={14} color="#808191">
-                  {experimentDetails.description}
+                  {description}
                 </Typography>
               </Stack>
             </Box>
           </Box>
+          {/* add new box here for user avatar */}
           <Box
             width="100%"
             flex={1}
@@ -246,8 +243,8 @@ const ExperimentDetails = () => {
               >
                 <img
                   src={
-                    checkImage(experimentDetails.creator.avatar)
-                      ? experimentDetails.creator.avatar
+                    checkImage(plotDetails.creator.avatar)
+                      ? plotDetails.creator.avatar
                       : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
                   }
                   alt="avatar"
@@ -261,7 +258,7 @@ const ExperimentDetails = () => {
 
                 <Box mt="15px">
                   <Typography fontSize={18} fontWeight={600} color="#11142D">
-                    {experimentDetails.creator.name}
+                    {plotDetails.creator.name}
                   </Typography>
                   <Typography mt="5px" fontSize={14} fontWeight={400}>
                     Researcher
@@ -292,7 +289,7 @@ const ExperimentDetails = () => {
                   fontWeight={600}
                   color="#11142D"
                 >
-                  {experimentDetails.creator.allExperiments.length} Experiments
+                  {plotDetails.creator.allPlots.length} Plots
                   {/* change above to 'allExperiments' */}
                 </Typography>
               </Stack>
@@ -311,7 +308,7 @@ const ExperimentDetails = () => {
                   icon={!isCurrentUser ? <ChatBubble /> : <Edit />}
                   handleClick={() => {
                     if (isCurrentUser) {
-                      navigate(`/experiments/edit/${experimentDetails._id}`);
+                      navigate(`/plots/edit/${plotDetails._id}`);
                     }
                   }}
                 />
@@ -322,7 +319,7 @@ const ExperimentDetails = () => {
                   fullWidth
                   icon={!isCurrentUser ? <Phone /> : <Delete />}
                   handleClick={() => {
-                    if (isCurrentUser) handleDeleteExperiment();
+                    if (isCurrentUser) handleDeletePlot();
                   }}
                 />
               </Stack>
@@ -346,9 +343,15 @@ const ExperimentDetails = () => {
             </Box> */}
           </Box>
         </Box>
+        {/* <button onClick={() => handleDeletePlot()}>DELETE</button>
+        <button onClick={() => navigate(`/plots/edit/${plotDetails._id}`)}>
+          EDIT
+        </button> */}
       </Box>
+
+      {/*  */}
     </div>
   );
 };
 
-export default ExperimentDetails;
+export default PlotDetails;

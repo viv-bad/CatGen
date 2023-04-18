@@ -26,7 +26,7 @@ const EditExperiment = () => {
   };
 
   const onFinishHandler = async (data: FieldValues) => {
-    if (!propertyImage.name) return alert("Please upload an experiment plot");
+    if (!propertyImage.name) return alert("Please upload an experiment image.");
 
     await onFinish({ ...data, photo: propertyImage.url, email: user.email });
   };

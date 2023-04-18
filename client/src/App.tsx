@@ -16,6 +16,8 @@ import {
   ChatBubbleOutline,
   PeopleAltOutlined,
   ScienceOutlined,
+  ShowChart,
+  ShowChartOutlined,
   StarOutlineRounded,
   VillaOutlined,
 } from "@mui/icons-material";
@@ -32,13 +34,17 @@ import {
   Researchers,
   MyProfile,
   ExperimentDetails,
+  PlotDetails,
   AllExperiments,
   CreateExperiment,
+  CreatePlot,
   ResearcherProfile,
   EditExperiment,
 } from "pages";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
+import AllPlots from "pages/all-plots";
+import EditPlot from "pages/edit-plot";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -63,7 +69,7 @@ function App() {
 
       if (profileObj) {
         const response = await fetch(
-          "https://catgen.onrender.com/api/v1/users",
+          "http://localhost:8080/api/v1/users", //https://catgen.onrender.com/api/v1/users
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -134,19 +140,28 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider("https://catgen.onrender.com/api/v1")} //http://localhost:8080/api/v1/users
+          dataProvider={dataProvider("http://localhost:8080/api/v1")} //http://localhost:8080/api/v1 //https://catgen.onrender.com/api/v1
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           resources={[
             {
-              name: "experiments", //change to experiments
+              name: "experiments",
               list: AllExperiments,
               // list: AllProperties,
               show: ExperimentDetails,
               create: CreateExperiment,
               edit: EditExperiment,
               icon: <ScienceOutlined />,
+            },
+            {
+              name: "plots",
+              list: AllPlots,
+              // list: MuiInferencer,
+              show: PlotDetails,
+              create: CreatePlot,
+              edit: EditPlot,
+              icon: <ShowChartOutlined />,
             },
             {
               name: "researchers", //change to researchers

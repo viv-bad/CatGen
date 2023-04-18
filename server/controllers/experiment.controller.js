@@ -52,7 +52,6 @@ const getExperimentDetail = async (req, res) => {
   const experimentExists = await Experiment.findOne({ _id: id }).populate(
     "creator"
   );
-
   if (experimentExists) {
     res.status(200).json(experimentExists);
   } else {
