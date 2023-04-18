@@ -14,7 +14,8 @@ export interface ProfileProps {
   name: string;
   avatar: string;
   email: string;
-  properties: Array | undefined;
+  experiments: Array | undefined;
+  plots: Array | undefined;
 }
 
 export interface PropertyProps {
@@ -27,6 +28,28 @@ export interface PropertyProps {
   location: string;
   date: Date;
   photo: string;
+  creator: string;
+}
+
+export interface PlotProps {
+  //change to ExperimentProps
+  _id: string;
+  title: string;
+  code: string;
+  experimentType: string;
+  description: string;
+  location: string;
+  date: Date;
+  x: Array;
+  y: Array;
+  xAxisLabel: string;
+  yAxisLabel: string;
+  rating: number;
+  // title: string;
+  // code: string;
+  // experimentType: string;
+  // date: Date;
+  // photo: string;
   creator: string;
 }
 

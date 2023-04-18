@@ -30,7 +30,7 @@ const CreatePlot = () => {
   const fileReader = new FileReader();
 
   const handleOnFileChange = (e) => {
-    // console.log("handle file change");
+    console.log("handle file change");
     setFile(e.target.files[0]);
   };
 
@@ -60,6 +60,7 @@ const CreatePlot = () => {
           },
         });
         //@ts-ignore
+
         const { data } = jsonOutput;
         //@ts-ignore
         const x = data.map((d) => d["x"]);
@@ -70,7 +71,7 @@ const CreatePlot = () => {
         // console.log(y);
         setXData1(x);
         setYData1(y);
-        // console.log(xData1);
+
         // console.log(yData1);
         // setFileData({ x: x.push(xData1), y: y.push(yData1) });
         // console.log(fileData);
@@ -83,8 +84,9 @@ const CreatePlot = () => {
   };
   const onFinishHandler = async (data) => {
     console.log("handle finish");
-
-    if (!xData1) return alert("Please select a file!");
+    // console.log(file);
+    if (!file) return alert("Please select a file!");
+    if (!xData1) return alert("CSV parsing completed. Click submit!");
 
     await onFinish({
       ...data,

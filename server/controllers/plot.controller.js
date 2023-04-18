@@ -123,11 +123,21 @@ const deletePlot = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const response = await Plot.findByIdAndDelete(id);
+    const plotToDelete = await Plot.findByIdAndDelete(id).populate("creator");
     // console.log(response);
-    res.json(response);
+    if (!plotToDelete) throw new Error("Plot not found");
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    plotToDelete.deleteOne({ session });
+    plotToDelete.creator.allPlots.pull(plotToDelete);
+
+    await plotToDelete.creator.save({ session });
+
+    await session.commitTransaction();
+    res.status(200).json({ message: "Plot deleted successfully" });
   } catch (err) {
-    res.json(err);
+    res.status(500).json({ message: err.message });
   }
 };
 

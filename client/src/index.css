@@ -6,6 +6,11 @@ a {
   text-decoration: none !important;
 }
 
+body {
+  /* transform: scale(0.8); */
+  /* transform-origin: 0 0; */
+}
+
 .my_profile-bg {
   width: 340px;
   border-top-left-radius: 15px;
@@ -23,6 +28,7 @@ a {
 
 @media screen and (max-width: 900px) {
   .my_profile-bg {
+    /* width: 100%; */
     width: 100%;
     border-radius: 15px;
   }

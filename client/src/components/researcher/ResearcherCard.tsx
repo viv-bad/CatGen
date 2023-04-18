@@ -6,6 +6,7 @@ import {
   LocationCity,
   Phone,
   Place,
+  ScatterPlotOutlined,
 } from "@mui/icons-material";
 import { useGetIdentity } from "@pankod/refine-core";
 import { Box, Stack, Typography } from "@pankod/refine-mui";
@@ -26,7 +27,9 @@ const ResearcherCard = ({
   name,
   avatar,
   noOfExperiments,
+  noOfPlots,
 }: AgentCardProp) => {
+  //change to ResearcherCardProp
   const { data: currentUser } = useGetIdentity();
 
   const generateLink = () => {
@@ -99,6 +102,11 @@ const ResearcherCard = ({
           <InfoBar
             icon={<Biotech sx={{ color: "#808191" }} />}
             name={`${noOfExperiments} Experiments`}
+          />
+
+          <InfoBar
+            icon={<ScatterPlotOutlined sx={{ color: "#808191" }} />}
+            name={`${noOfPlots} Plots`}
           />
         </Stack>
       </Box>

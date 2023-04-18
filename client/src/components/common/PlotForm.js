@@ -12,6 +12,7 @@ import {
   Button,
 } from "@mui/material";
 import { Star } from "@mui/icons-material";
+import CustomButton from "./CustomButton";
 
 const PlotForm = ({
   type,
@@ -23,17 +24,7 @@ const PlotForm = ({
   onFinishHandler,
   file,
   fileData,
-  // handleTitleChange,
-  // handleCodeChange,
-  // handleDateChange,
-  // handleExperimentTypeChange,
-  // handleXAxisLabelChange,
-  // handleYAxisLabelChange,
-  // handleDescriptionChange,
-  // handleLocationChange,
-  // handleRatingChange,
 }) => {
-  // const [fileName, setFileName] = useState("");
   return (
     <div>
       <Box>
@@ -50,9 +41,6 @@ const PlotForm = ({
               gap: "20px",
             }}
             onSubmit={handleSubmit(onFinishHandler)}
-            // onSubmit={() => onFinishHandler}
-            // onSubmit={() => console.log("form submitted")}
-            // onSubmit={handleFileUpload1}
           >
             <Stack direction="row" gap={4}>
               <FormControl sx={{ flex: 1 }}>
@@ -336,8 +324,50 @@ const PlotForm = ({
               </FormControl>
             </Stack>
             {/*  */}
-
-            <input
+            <Stack direction="column" gap={1} justifyContent="center" mb={2}>
+              <Stack direction="row" gap={2}>
+                <Typography
+                  color="#11142d"
+                  fontSize={16}
+                  fontWeight={500}
+                  my="10px"
+                >
+                  Generate Plot
+                </Typography>
+                <Button
+                  component="label"
+                  sx={{
+                    width: "fit-content",
+                    color: "#2ed480",
+                    textTransform: "capitalize",
+                    fontsize: 16,
+                  }}
+                >
+                  Upload *
+                  <input
+                    hidden
+                    accept={".csv"}
+                    type="file"
+                    onChange={handleOnFileChange}
+                  />
+                </Button>
+              </Stack>
+              <Typography
+                fontSize={14}
+                color="#808191"
+                sx={{ wordBreak: "break-all" }}
+              >
+                {file?.name}
+              </Typography>
+            </Stack>
+            <CustomButton
+              type="submit"
+              handleClick={handleFileUpload1}
+              title={formLoading ? "Plotting CSV..." : "Submit"}
+              backgroundColor="#475be8"
+              color="#fcfcfc"
+            />
+            {/* <input
               type={"file"}
               id={"csvFileInput"}
               accept={".csv"}
@@ -359,7 +389,7 @@ const PlotForm = ({
               style={{ width: "5%" }}
             >
               Import CSV
-            </button>
+            </button> */}
             {/* <Button
               // type="submit"
               // title={formLoading ? "Submitting..." : "Submit"}

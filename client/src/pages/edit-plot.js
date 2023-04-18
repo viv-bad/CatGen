@@ -81,7 +81,8 @@ const EditPlot = () => {
   const onFinishHandler = async (data) => {
     console.log("handle finish");
 
-    if (!xData1) return alert("Please select a file!");
+    if (!file) return alert("Please select a file!");
+    if (!xData1) return alert("CSV parsing completed. Click submit!");
 
     await onFinish({
       ...data,

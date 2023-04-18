@@ -1,8 +1,9 @@
 import React from "react";
 import { useList } from "@pankod/refine-core"; //quickly fetch list of useers
-import { Box, Typography } from "@pankod/refine-mui";
+import { Box, Grid, Typography } from "@pankod/refine-mui";
 
 import { ResearcherCard } from "components";
+import { CircularProgress } from "@pankod/refine-mui";
 
 const Researchers = () => {
   const { data, isLoading, isError } = useList({
@@ -10,7 +11,32 @@ const Researchers = () => {
   });
 
   const allResearchers = data?.data ?? [];
-  if (isLoading) return <div>Loading...</div>;
+  // console.log(allResearchers);
+  if (isLoading)
+    return (
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="center"
+        style={{ height: "100vh" }}
+      >
+        <Grid item>
+          <Box>
+            <Typography
+              display="flex"
+              flexDirection="column"
+              gap={2}
+              align="center"
+              alignItems="center"
+              justifyContent="center"
+              fontSize={24}
+            >
+              Loading Researchers... <CircularProgress color="success" />
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    );
   if (isError) return <div>Error.</div>;
 
   return (
@@ -35,7 +61,8 @@ const Researchers = () => {
               name={researcher.name}
               email={researcher.email}
               avatar={researcher.avatar}
-              noOfExperiments={researcher.allProperties.length}
+              noOfExperiments={researcher.allExperiments.length}
+              noOfPlots={researcher.allPlots.length}
             />
           ))}
         </Box>
