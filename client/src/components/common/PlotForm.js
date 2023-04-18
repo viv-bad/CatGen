@@ -332,7 +332,7 @@ const PlotForm = ({
                   fontWeight={500}
                   my="10px"
                 >
-                  Generate Plot
+                  Upload 2-column CSV (x, y)
                 </Typography>
                 <Button
                   component="label"

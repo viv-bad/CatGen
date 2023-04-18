@@ -33,7 +33,7 @@ const EditPlot = () => {
   };
 
   const handleFileUpload1 = (e) => {
-    console.log("handle file upload");
+    // console.log("handle file upload");
     // e.preventDefault();
     if (file) {
       fileReader.onload = async function (event) {

@@ -13,7 +13,7 @@ const MyProfile = () => {
     id: user?.userid,
   });
   const navigate = useNavigate();
-  const myProfile = data?.data ?? [];
+  const myProfile = data?.data ?? {};
 
   if (isLoading)
     return (

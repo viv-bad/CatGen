@@ -29,7 +29,7 @@ const getUserInfoById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findById({ _id: id }).populate([
+    const user = await User.findOne({ _id: id }).populate([
       "allExperiments",
       "allPlots",
     ]); //populate generates individual experiment and plot objects based on ID from user model

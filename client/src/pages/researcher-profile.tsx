@@ -11,9 +11,9 @@ const ResearcherProfile = () => {
     id: id as string,
   });
 
-  const myProfile = data?.data ?? [];
-  console.log(myProfile);
-  if (!isLoading)
+  const myProfile = data?.data ?? {};
+  // console.log(myProfile);
+  if (isLoading)
     return (
       <Grid
         container
@@ -32,7 +32,8 @@ const ResearcherProfile = () => {
               justifyContent="center"
               fontSize={24}
             >
-              Loading {myProfile.name.split(" ")[0]}'s Profile{" "}
+              {/* Loading {myProfile.name.split(" ")[0]}'s Profile{" "} */}
+              Loading {myProfile.name}'s Profile
               <CircularProgress color="success" />
             </Typography>
           </Box>

@@ -33,7 +33,7 @@ const PlotDetails = () => {
   const { data, isLoading, isError } = queryResult;
 
   const plotDetails = data?.data ?? {};
-  console.log(plotDetails);
+  // console.log(plotDetails);
   const {
     title,
     code,
@@ -195,7 +195,6 @@ const PlotDetails = () => {
                     color="#11142d"
                   >
                     Completed on:{" "}
-                    {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
                     {date.toString().split("T")[0].replaceAll("-", "/")}
                     {/* {date} */}
                   </Typography>

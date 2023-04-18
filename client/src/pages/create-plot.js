@@ -30,14 +30,14 @@ const CreatePlot = () => {
   const fileReader = new FileReader();
 
   const handleOnFileChange = (e) => {
-    console.log("handle file change");
+    // console.log("handle file change");
     setFile(e.target.files[0]);
   };
 
   //
   //@ts-ignore
   const handleFileUpload1 = (e) => {
-    console.log("handle file upload");
+    // console.log("handle file upload");
     // e.preventDefault();
     if (file) {
       fileReader.onload = async function (event) {
@@ -83,7 +83,7 @@ const CreatePlot = () => {
     // navigate("/plots"); //change to make it navigate to /id of what you just uploaded
   };
   const onFinishHandler = async (data) => {
-    console.log("handle finish");
+    // console.log("handle finish");
     // console.log(file);
     if (!file) return alert("Please select a file!");
     if (!xData1) return alert("CSV parsing completed. Click submit!");

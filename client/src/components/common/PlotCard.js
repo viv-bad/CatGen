@@ -111,7 +111,7 @@ const PlotCard = ({
               </Typography>
             </Box>
             <Typography fontSize={14} color="#11142D">
-              {/* {date.toString().split("T")[0].replaceAll("-", "/")} */}
+              {date.toString().split("T")[0].replaceAll("-", "/")}
             </Typography>
           </Stack>
         </CardContent>
