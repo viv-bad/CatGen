@@ -1,4 +1,4 @@
-import { Email, Phone, Place } from "@mui/icons-material";
+import { Add, Email, Phone, Place } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@pankod/refine-mui";
 
 import { ProfileProps, PropertyProps, PlotProps } from "interfaces/common";
@@ -6,6 +6,7 @@ import ExperimentCard from "./ExperimentCard";
 import PlotCard from "./PlotCard";
 import { useNavigate } from "@pankod/refine-react-router-v6";
 import { useGetIdentity, useOne, useTable } from "@pankod/refine-core";
+import CustomButton from "./CustomButton";
 
 function checkImage(url: any) {
   let img = new Image();
@@ -21,11 +22,23 @@ const Profile = ({
   experiments,
   plots,
 }: ProfileProps) => {
+  const navigate = useNavigate();
   return (
     <Box>
-      <Typography fontSize={25} fontWeight={700} color="#11142D">
-        {type} Profile
-      </Typography>
+      <Stack display="flex" flexDirection="row" justifyContent="space-between">
+        <Typography fontSize={25} fontWeight={700} color="#11142D">
+          {type} Profile
+        </Typography>
+        {type === "My" ? (
+          <CustomButton
+            title="Edit Profile"
+            handleClick={() => navigate("/my-profile/edit")}
+            backgroundColor="#B153FF"
+            color="#fcfcfc"
+            icon={<Add />}
+          />
+        ) : null}
+      </Stack>
 
       <Box mt="20px" borderRadius="15px" padding="20px" bgcolor="#FCFCFC">
         <Box

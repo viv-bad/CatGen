@@ -1,7 +1,9 @@
+import { Add } from "@mui/icons-material";
 import { useGetIdentity, useOne, useTable } from "@pankod/refine-core";
 import { CircularProgress } from "@pankod/refine-mui";
 import { Box, Grid, Typography } from "@pankod/refine-mui";
-import { Profile } from "components";
+import { Navigate, useNavigate } from "@pankod/refine-react-router-v6";
+import { CustomButton, Profile } from "components";
 
 const MyProfile = () => {
   const { data: user } = useGetIdentity();
@@ -10,7 +12,7 @@ const MyProfile = () => {
     resource: "users",
     id: user?.userid,
   });
-
+  const navigate = useNavigate();
   const myProfile = data?.data ?? [];
 
   if (isLoading)
